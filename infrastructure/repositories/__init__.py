@@ -2,6 +2,8 @@ import os
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
+from pymongo.errors import DuplicateKeyError
+from datetime import datetime
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -16,6 +18,17 @@ class Database:
     def get_collection(self, collection_name):
         return self.db[collection_name]
 
+    def add_workspace(self, workspace_id, workspace_name):
+        collection = self.get_collection('workspaces')
+        if collection.find_one({'name': workspace_name}):
+            return {"status": "error", "message": "The name already exists"}
+        try:
+            data = collection.insert_one({'workspace_id': workspace_id, 'name': workspace_name, 'files': [], 'created_at': datetime.now()})
+            return data
+        except DuplicateKeyError:
+            return {"status": "error", "message": "Workspace ID already exists"}
+
 # Example usage:
 # db_instance = Database()
-# collection = db_instance.get_collection('your_collection_name')
+# response = db_instance.add_workspace('workspace_id', 'workspace_name')
+# print(response)

@@ -1,23 +1,23 @@
 from flask import Blueprint, request, jsonify
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
-from domain.models.workspace import Workspace
-
-# domain logic should be in domain/services/workspaceService.py
-#from domain.services.workspaceService import WorkspaceService
-
 import uuid
 from datetime import datetime
 
 class WorkspaceService:
-    def __init__(self, repo):
-        self.repo = repo
+    def __init__(self):
+        self.repo = WorkspaceRepo()
 
     def get_workspaces(self):
         return self.repo.get_workspaces()
 
     def create_workspace(self, name):
-        workspace = Workspace(workspace_id=str(uuid.uuid4()), name=name, created_at=datetime.utcnow())
-        return self.repo.create_workspace(workspace)
+        if self.repo.workspace_name_exists(name):
+            return {"status": "error", "message": "The name already exists"}, 400
+        workspace_id = str(uuid.uuid4())
+        workspace = self.repo.create_workspace(id=workspace_id, name=name)
+        if workspace:
+            return {"status": "success", "message": "Workspace created successfully", "workspace": workspace.to_dict()}, 201
+        return {"status": "error", "message": "Failed to create workspace"}, 500
 
     def get_workspace(self, workspace_id):
         return self.repo.get_workspace(workspace_id)
@@ -44,7 +44,6 @@ class WorkspaceService:
     def get_analysis(self, workspace_id):
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
-            # Example analysis: count the number of files in the workspace
             num_files = len(workspace.files)
             file_names = [file['name'] for file in workspace.files]
             return {
@@ -56,6 +55,5 @@ class WorkspaceService:
         return None
 
     def get_author_analysis(self, workspace_id):
-        # Implement author analysis logic here
         pass
 

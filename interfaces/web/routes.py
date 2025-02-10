@@ -1,12 +1,13 @@
 from flask import Blueprint, request, jsonify
+import re
 from infrastructure.repositories import Database
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
 from service.workspace_service import WorkspaceService
 
 # Initialize database and repository
 db = Database()
-repo = WorkspaceRepo(db)
-service = WorkspaceService(repo)
+repo = WorkspaceRepo()
+service = WorkspaceService()
 
 # Create a Blueprint for the routes
 bp = Blueprint('main', __name__)
@@ -25,8 +26,10 @@ def create_workspace():
     data = request.json
     if 'name' not in data:
         return jsonify({'error': 'Workspace name is required'}), 400
-    workspace_id = service.create_workspace(data['name'])
-    return jsonify({'workspace_id': workspace_id}), 201
+    if not re.match("^[a-zA-Z0-9_]*$", data['name']):
+            return jsonify({"message": "工作區名稱僅可包含大小寫英文字母、數字、底線。其餘符號皆不符合規則。"}), 400
+    response, status_code = service.create_workspace(data['name'])
+    return jsonify(response), status_code
 
 @bp.route('/workspaces/<workspace_id>', methods=['GET'])
 def get_workspace(workspace_id):
@@ -42,12 +45,18 @@ def delete_workspace(workspace_id):
         return '', 204
     return jsonify({'error': 'Workspace not found'}), 404
 
-@bp.route('/workspaces/<workspace_id>/files', methods=['POST'])
+@bp.route('/workspaces/<workspace_id>/files', methods=['PUT'])  # Changed to PUT
 def add_file_to_workspace(workspace_id):
     data = request.json
-    if 'file' not in data:
-        return jsonify({'error': 'File data is required'}), 400
-    result = service.add_file_to_workspace(workspace_id, data['file'])
+    if 'file' not in data or 'name' not in data['file'] or 'content' not in data['file']:
+        return jsonify({'error': 'File data with name and content is required'}), 400
+    
+    file_data = {
+        'name': data['file']['name'],
+        'content': data['file']['content']
+    }
+    
+    result = service.add_file_to_workspace(workspace_id, file_data)
     if result:
         return '', 204
     return jsonify({'error': 'Workspace not found'}), 404
