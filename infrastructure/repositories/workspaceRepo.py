@@ -42,3 +42,11 @@ class WorkspaceRepo:
     def workspace_name_exists(self, name):
         collection = self.db.get_collection('workspaces')
         return collection.find_one({'name': name}) is not None
+    
+    def add_file_to_workspace(self, workspace_id, file_data):
+        collection = self.db.get_collection('workspaces')
+        return collection.update_one({'workspace_id': workspace_id}, {'$push': {'files': file_data}})
+    
+    def remove_file_from_workspace(self, workspace_id, file_name):
+        collection = self.db.get_collection('workspaces')
+        return collection.update_one({'workspace_id': workspace_id}, {'$pull': {'files': {'name': file_name}}})

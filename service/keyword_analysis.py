@@ -10,12 +10,10 @@ class KeywordAnalysis:
         keyword_count = dict()
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             keyword = ""
             insideDE = False
             for line in content.split('\n'):
@@ -63,13 +61,15 @@ class KeywordAnalysis:
         conditionCount = 0
         year_count = dict()
         for file in files:
-            fileName = file.get('name')
-            if fileName not in filesToAnalyze:
+            if 'name' not in file:
+                print('not in files')
                 continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            print(file['name'])
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file['content']
+            
             target = target.lower()
             keyword = ""
             insideDE = False
@@ -105,8 +105,8 @@ class KeywordAnalysis:
                 'year': year[0],
                 'count': year[1]
             })
-        start = min(year_count.keys())
-        end = max(year_count.keys())
+        start = min(year_count.keys()) if year_count else None
+        end = max(year_count.keys()) if year_count else None
         return count, conditionCount, start, end, results
 
     #根據關鍵字出現次數做分析
@@ -115,12 +115,10 @@ class KeywordAnalysis:
         titleCount = 0
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             keyword = ""
             insideDE = False
             for line in content.split('\n'):

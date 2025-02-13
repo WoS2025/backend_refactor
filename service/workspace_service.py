@@ -31,23 +31,22 @@ class WorkspaceService:
         return self.repo.delete_workspace(workspace_id)
 
     def add_file_to_workspace(self, workspace_id, file):
-        # Escape double quotes
+        # Decode the Base64-encoded content
         if 'content' in file:
-            file['content'] = file['content'].replace('"', '\\"')
-
+            file['content'] = base64.b64decode(file['content']).decode('utf-8')
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             workspace.add_file(file)
-            self.repo.update_workspace(workspace)
-            return True
+            update_result = self.repo.update_workspace(workspace)
+            return update_result.modified_count > 0
         return False
 
     def remove_file_from_workspace(self, workspace_id, file_name):
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             workspace.remove_file(file_name)
-            self.repo.update_workspace(workspace)
-            return True
+            update_result = self.repo.update_workspace(workspace)
+            return update_result.modified_count > 0
         return False
 
     def get_analysis(self, workspace_id):
@@ -125,7 +124,7 @@ class WorkspaceService:
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             files = workspace.files
-            count, results = ReferenceAnalysis.reference(files, files, threshold)
+            count, results = ReferenceAnalysis.get_referencesInfo(files, files, threshold)
             workspace.latest_result = {
                 'type': 'reference_analysis',
                 'count': count,
@@ -139,11 +138,13 @@ class WorkspaceService:
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             files = workspace.files
-            count, conditionCount, results = FieldAnalysis.field(files, files, field)
+            count, conditionCount, start, end, results = FieldAnalysis.fieldField(files, files, field)
             workspace.latest_result = {
                 'type': 'field_analysis',
                 'count': count,
                 'conditionCount': conditionCount,
+                'start': start,
+                'end': end,
                 'results': results
             }
             self.repo.update_workspace(workspace)
@@ -169,15 +170,13 @@ class WorkspaceService:
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             files = workspace.files
-            field_count, titleCount, results = FieldAnalysis.fieldOccurence(files, files, threshold)
+            titleCount, results = FieldAnalysis.fieldOccurence(files, files, threshold)
             workspace.latest_result = {
                 'type': 'field_analysis_occurence',
-                'field_count': field_count,
                 'titleCount': titleCount,
                 'results': results
             }
             self.repo.update_workspace(workspace)
             return workspace.latest_result
         return None
-    
-    
+

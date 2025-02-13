@@ -10,12 +10,12 @@ class ReferenceAnalysis:
         count = 0
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # if fileName not in filesToAnalyze:
+            #     continue
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             ti = ""
             ref_cnt = 0
             insideAF = False

@@ -6,6 +6,13 @@ class Workspace:
         self.files = files if files is not None else []
         self.latest_result = latest_result
         
+    def add_file(self, file_name):
+        self.files.append(file_name)
+    
+    def remove_file(self, file_name):
+        # print(self.files)
+        self.files = [file for file in self.files if file['name'] != file_name]
+        # print(self.files)
     def to_dict(self):
         return {
             'workspace_id': self.workspace_id,

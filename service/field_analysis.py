@@ -9,12 +9,12 @@ class FieldAnalysis:
         fieldAnalysis_count = dict()
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # if fileName not in filesToAnalyze:
+            #     continue
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             fieldAnalysis = ""
             insideSC = False
             for line in content.split('\n'):
@@ -61,12 +61,12 @@ class FieldAnalysis:
         titleCount = 0
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # if fileName not in filesToAnalyze:
+            #     continue
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             field = ""
             insideSC = False
             for line in content.split('\n'):
@@ -109,12 +109,12 @@ class FieldAnalysis:
         year_count = dict()
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # if fileName not in filesToAnalyze:
+            #     continue
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             target = field.lower()
             fields = ""
             insideSC = False

@@ -9,12 +9,12 @@ class AuthorAnalysis:
         author_count = dict()
         for file in files:
             fileName = file.get('name')
-            if fileName not in filesToAnalyze:
-                continue
-            fileURL = file.get('url')
-            response = requests.get(fileURL)
-            response.encoding = 'utf-8'
-            content = response.text
+            # if fileName not in filesToAnalyze:
+            #     continue
+            # fileURL = file.get('url')
+            # response = requests.get(fileURL)
+            # response.encoding = 'utf-8'
+            content = file.get('content')
             author = ""
             insideAF = False
             for line in content.split('\n'):
