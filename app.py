@@ -1,17 +1,15 @@
-from flask import Flask, request, jsonify, send_file, make_response
+from flask import Flask
 from flask_cors import CORS
-from infrastructure import database
+from interfaces.web.routes import bp as main_bp
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
 
-db = database.Database()
+# Register the Blueprint
+app.register_blueprint(main_bp)
 
-@app.route('/')
-def home():
-    return "Hello, World!"
-
-@app.route('/')
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 
