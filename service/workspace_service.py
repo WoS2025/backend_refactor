@@ -1,7 +1,12 @@
 from flask import Blueprint, request, jsonify
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
+from service.keyword_analysis import KeywordAnalysis
+from service.author_analysis import AuthorAnalysis
+from service.reference_analysis import ReferenceAnalysis
+from service.field_analysis import FieldAnalysis
 import uuid
 from datetime import datetime
+import base64
 
 class WorkspaceService:
     def __init__(self):
@@ -26,6 +31,10 @@ class WorkspaceService:
         return self.repo.delete_workspace(workspace_id)
 
     def add_file_to_workspace(self, workspace_id, file):
+        # Escape double quotes
+        if 'content' in file:
+            file['content'] = file['content'].replace('"', '\\"')
+
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             workspace.add_file(file)
@@ -44,16 +53,131 @@ class WorkspaceService:
     def get_analysis(self, workspace_id):
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
-            num_files = len(workspace.files)
-            file_names = [file['name'] for file in workspace.files]
-            return {
-                'workspace_id': workspace.workspace_id,
-                'workspace_name': workspace.name,
-                'num_files': num_files,
-                'file_names': file_names
-            }
+            if workspace.latest_result:
+                return workspace.latest_result       
         return None
 
-    def get_author_analysis(self, workspace_id):
-        pass
-
+    def keyword_analysis(self, workspace_id, keyword):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, conditionCount, start, end, results = KeywordAnalysis.keywordEachYear(files, files, keyword)
+            workspace.latest_result = {
+                'type': 'keyword_analysis',
+                'count': count,
+                'conditionCount': conditionCount,
+                'start': start,
+                'end': end,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def keyword_analysis_year(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, conditionCount, results = KeywordAnalysis.year(files, files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'keyword_analysis_year',
+                'count': count,
+                'conditionCount': conditionCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def keyword_analysis_occurence(self, workspace_id, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            titleCount, results = KeywordAnalysis.keywordOccurence(files, files, threshold)
+            workspace.latest_result = {
+                'type': 'keyword_analysis_occurence',
+                'titleCount': titleCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    # 根據年份區間對作者做分析（看年份區間內作者發表了幾篇）
+    def author_analysis_year(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, conditionCount, results = AuthorAnalysis.author(files, files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'author_analysis',
+                'count': count,
+                'conditionCount': conditionCount,
+                'conditionCount': conditionCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    # 根據引用次數做分析
+    def reference_analysis(self, workspace_id, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, results = ReferenceAnalysis.reference(files, files, threshold)
+            workspace.latest_result = {
+                'type': 'reference_analysis',
+                'count': count,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def field_analysis(self, workspace_id, field):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, conditionCount, results = FieldAnalysis.field(files, files, field)
+            workspace.latest_result = {
+                'type': 'field_analysis',
+                'count': count,
+                'conditionCount': conditionCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def field_analysis_year(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            count, conditionCount, results = FieldAnalysis.fieldEachYear(files, files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'field_analysis_year',
+                'count': count,
+                'conditionCount': conditionCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def field_analysis_occurence(self, workspace_id, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            field_count, titleCount, results = FieldAnalysis.fieldOccurence(files, files, threshold)
+            workspace.latest_result = {
+                'type': 'field_analysis_occurence',
+                'field_count': field_count,
+                'titleCount': titleCount,
+                'results': results
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    

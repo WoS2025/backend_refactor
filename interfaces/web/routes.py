@@ -45,6 +45,7 @@ def delete_workspace(workspace_id):
         return '', 204
     return jsonify({'error': 'Workspace not found'}), 404
 
+# request.json = { "workspace": "" ,"file": [{ "name": "", "content": "" },{ "name": "", "content": "" }, ... ] }
 @bp.route('/workspaces/<workspace_id>/files', methods=['PUT'])  # Changed to PUT
 def add_file_to_workspace(workspace_id):
     data = request.json
@@ -68,19 +69,94 @@ def remove_file_from_workspace(workspace_id, file_name):
         return '', 204
     return jsonify({'error': 'Workspace not found'}), 404
 
-@bp.route('/workspaces/<workspace_id>/analysis', methods=['GET'])
-def get_analysis(workspace_id):
+@bp.route('/workspaces/<workspace_id>/analysis/result', methods=['GET'])
+def get_analysis_result(workspace_id):
     result = service.get_analysis(workspace_id)
     if result:
         return jsonify(result), 200
     return jsonify({'error': 'Workspace not found'}), 404
 
-@bp.route('/analysis/author', methods=['POST'])
-def author_analysis():
+# request.json = { "keyword": "" , "files": ["name1", "name2", ...] }
+@bp.route('/workspaces/<workspace_id>/analysis/keyword', methods=['POST'])
+def keyword_analysis(workspace_id):
     data = request.json
-    if 'workspace_id' not in data:
-        return jsonify({'error': 'Workspace ID is required'}), 400
-    result = service.get_author_analysis(data['workspace_id'])
+    if 'keyword' not in data:
+        return jsonify({'error': 'Keyword is required'}), 400
+    result = service.keyword_analysis(workspace_id, data['keyword'])
+    return jsonify(result), 200
+
+# request.json = { "files": ["name1", "name2", ...], "start": '', "end": '', "threshold": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/keyword/year', methods=['POST'])
+def keyword_year_analysis(workspace_id):
+    data = request.json
+    if 'keyword' not in data:
+        return jsonify({'error': 'Keyword is required'}), 400
+    result = service.keyword_year_analysis(workspace_id, data['keyword'], data['start'], data['end'], data['threshold'])
+    if result:   
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
+# request.json = {'files': '', 'threshold': ''}
+@bp.route('/workspaces/<workspace_id>/analysis/keyword/occurence', methods=['POST'])
+def keyword_occurence_analysis(workspace_id):
+    data = request.json
+    if 'keyword' not in data:
+        return jsonify({'error': 'Keyword is required'}), 400
+    result = service.keyword_occurence_analysis(workspace_id, data['threshold'])
+    if result:
+        return jsonify(result), 200 
+    return jsonify({'error': 'no result'}), 404
+
+# request.json = {'files': ['name1', 'name2', ...], }
+@bp.route('/workspaces/<workspace_id>/analysis/author/year', methods=['POST'])
+def author_analysis_year(workspace_id):
+    data = request.json
+    if 'files' not in data:
+        return jsonify({'error': 'Files is required'}), 400
+    result = service.author_analysis_year(workspace_id, data['start'], data['end'], data['threshold'])
     if result:
         return jsonify(result), 200
-    return jsonify({'error': 'Workspace not found'}), 404
+    return jsonify({'error': 'no result'}), 404
+
+# request.json = {'workspace': '', "files": '', "threshold": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/reference', methods=['POST'])
+def reference_analysis(workspace_id):
+    data = request.json
+    if 'files' not in data:
+        return jsonify({'error': 'Files is required'}), 400
+    result = service.reference_analysis(workspace_id, data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
+
+# request.json = {'workspace': '', "files": '', "field": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/field', methods=['POST'])
+def field_analysis(workspace_id):
+    data = request.json
+    if 'files' not in data:
+        return jsonify({'error': 'Files is required'}), 400
+    result = service.field_analysis(workspace_id, data['field'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
+
+# request.json = {'workspace': '', "files": ["name1", "name2", ...], "start": '', "end": '', "threshold": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/field/year', methods=['POST'])
+def field_analysis_year(workspace_id):
+    data = request.json
+    if 'files' not in data:
+        return jsonify({'error': 'Files is required'}), 400
+    result = service.field_analysis_year(workspace_id, data['start'], data['end'], data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
+
+# request.json = {'workspace': '', "files": '', "threshold": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/field/occurence', methods=['POST'])
+def field_occurence_analysis(workspace_id):
+    data = request.json
+    if 'files' not in data:
+        return jsonify({'error': 'Files is required'}), 400
+    result = service.field_occurence_analysis(workspace_id, data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
