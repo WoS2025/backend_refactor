@@ -3,11 +3,13 @@ import re
 from infrastructure.repositories import Database
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
 from service.workspace_service import WorkspaceService
+from service.auth_service import AuthService
 
 # Initialize database and repository
 db = Database()
 repo = WorkspaceRepo()
 service = WorkspaceService()
+auth_service = AuthService()
 
 # Create a Blueprint for the routes
 bp = Blueprint('main', __name__)
@@ -28,7 +30,7 @@ def create_workspace():
     if 'name' not in data:
         return jsonify({'error': 'Workspace name is required'}), 400
     if not re.match("^[a-zA-Z0-9_]*$", data['name']):
-            return jsonify({"message": "工作區名稱僅可包含大小寫英文字母、數字、底線。其餘符號皆不符合規則。"}), 400
+        return jsonify({"message": "工作區名稱僅可包含大小寫英文字母、數字、底線。其餘符號皆不符合規則。"}), 400
     response, status_code = service.create_workspace(data['name'])
     return jsonify(response), status_code
 
@@ -93,7 +95,7 @@ def keyword_analysis(workspace_id):
     result = service.keyword_analysis(workspace_id, data['keyword'])
     return jsonify(result), 200
 
-# request.json = {"start": '', "end": '', "threshold": ''}
+# request.json = {"start": 2000, "end" 2025:, "threshold": 1}
 @bp.route('/workspaces/<workspace_id>/analysis/keyword/year', methods=['POST'])
 def keyword_year_analysis(workspace_id):
     data = request.json
@@ -101,6 +103,7 @@ def keyword_year_analysis(workspace_id):
     if result:   
         return jsonify(result), 200
     return jsonify({'error': 'no result'}), 404
+
 # request.json = {'threshold': ''}
 @bp.route('/workspaces/<workspace_id>/analysis/keyword/occurence', methods=['POST'])
 def keyword_occurence_analysis(workspace_id):
@@ -154,3 +157,31 @@ def field_occurence_analysis(workspace_id):
     if result:
         return jsonify(result), 200
     return jsonify({'error': 'no result'}), 404
+
+# request.json = {"username": "", "email": "", "password": ""}
+@bp.route('/register', methods=['POST'])
+def register_user():
+    data = request.json
+    if not all(key in data for key in ('username', 'email', 'password')):
+        return jsonify({'error': 'All fields are required'}), 400
+    response = auth_service.register_user(data['username'], data['email'], data['password'])
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
+# request.json = {"email": "", "password": ""}
+@bp.route('/login', methods=['POST'])
+def login_user():
+    data = request.json
+    if not all(key in data for key in ('email', 'password')):
+        return jsonify({'error': 'Email and password are required'}), 400
+    response = auth_service.login_user(data['email'], data['password'])
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
+@bp.route('/user/<user_id>/workspace/<workspace_id>', methods=['GET'])
+def add_workspace_to_user(user_id, workspace_id):
+    response = auth_service.add_workspace_to_user(user_id, workspace_id)
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
+@bp.route('/user/<user_id>/workspace/<workspace_id>', methods=['DELETE'])
+def remove_workspace_from_user(user_id, workspace_id):
+    response = auth_service.remove_workspace_from_user(user_id, workspace_id)
+    return jsonify(response), 200 if response['status'] == 'success' else 400

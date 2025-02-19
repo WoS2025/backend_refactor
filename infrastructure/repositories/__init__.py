@@ -4,7 +4,8 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 from pymongo.errors import DuplicateKeyError
 from datetime import datetime
-
+from werkzeug.security import generate_password_hash
+from domain.models.user import User
 load_dotenv()  # Load environment variables from .env file
 
 class Database:
@@ -13,7 +14,7 @@ class Database:
         if not mongo_uri:
             raise ValueError("No MongoDB URI found in environment variables")
         self.client = MongoClient(mongo_uri, server_api=ServerApi('1'))
-        self.db = self.client.get_database()
+        self.db = self.client.get_database('Uniproject')  # Explicitly specify the database name
 
     def get_collection(self, collection_name):
         return self.db[collection_name]
@@ -27,6 +28,20 @@ class Database:
             return data
         except DuplicateKeyError:
             return {"status": "error", "message": "Workspace ID already exists"}
+        
+    def add_user(self, user_id, username, email, password):
+        collection = self.get_collection('users')
+        if collection.find_one({'email': email}):
+            return {"status": "error", "message": "Email already registered"}
+        hashed_password = generate_password_hash(password)
+        user = User(user_id, username, email, hashed_password)
+        try:
+            collection.insert_one(user.to_dict())
+            return {"status": "success", "message": "User registered successfully"}
+        except DuplicateKeyError:
+            return {"status": "error", "message": "User ID already exists"}
+        
+    
 
 # Example usage:
 # db_instance = Database()
