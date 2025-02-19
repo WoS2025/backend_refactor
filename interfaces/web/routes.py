@@ -21,6 +21,7 @@ def get_workspaces():
     workspaces = service.get_workspaces()
     return jsonify([workspace.to_dict() for workspace in workspaces]), 200
 
+# {"name":"abc"}
 @bp.route('/workspaces', methods=['POST'])
 def create_workspace():
     data = request.json
