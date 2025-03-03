@@ -35,7 +35,26 @@ class UserRepository:
             return {"status": "success", "message": "Login successful", "user": user.to_dict()}
         else:
             return {"status": "error", "message": "Invalid password"}
+        
+    def update_password(self, email, password):
+        user_data = self.collection.find_one({'email': email})
+        if not user_data:
+            return {"status": "error", "message": "Email not found"}
+        user = User.from_dict(user_data)
+        hashed_password = generate_password_hash(password)
+        user.password = hashed_password
+        result = self.collection.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        if result.modified_count > 0:
+            return {"status": "success", "message": "Password updated successfully"}
+        else:
+            return {"status": "error", "message": "Failed to update password"}
 
+    def find_user_by_email(self, email):
+        user_data = self.collection.find_one ({'email': email})
+        if not user_data:
+            return None
+        return User.from_dict(user_data)
+    
     def add_workspace_to_user(self, user_id, workspace_id):
         user_data = self.collection.find_one({'user_id': user_id})
         if not user_data:
@@ -63,6 +82,8 @@ class UserRepository:
             else:
                 return {"status": "error", "message": "Failed to remove workspace from user"}
         return {"status": "error", "message": "Workspace not found in user"}
+    
+    
 
 # Example usage:
 # user_repo = UserRepository()
