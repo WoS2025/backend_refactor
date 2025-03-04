@@ -205,6 +205,11 @@ def remove_workspace_from_user(user_id, workspace_id):
     response = auth_service.remove_workspace_from_user(user_id, workspace_id)
     return jsonify(response), 200 if response['status'] == 'success' else 400
 
+@bp.route('/user/<user_id>', methods=['GET'])
+def get_user_workspaces(user_id):
+    response = auth_service.get_user(user_id)
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
 #放在backend_refactor-main\interfaces\web\routes，在 Flask API (Blueprint) 中加入學校分析的 API 端點。
     # request.json = { "start": '', "end": '', "threshold": ''}
 @bp.route('/workspaces/<workspace_id>/analysis/institution', methods=['POST'])

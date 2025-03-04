@@ -14,6 +14,9 @@ class AuthService:
     def login_user(self, email, password):
         return self.user_repo.login_user(email, password)
     
+    def get_user(self, user_id):
+        return self.user_repo.get_user(user_id)
+    
     def update_password(self, email, password):
         return self.user_repo.update_password(email, password)
     

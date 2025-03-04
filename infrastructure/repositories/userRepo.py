@@ -36,6 +36,13 @@ class UserRepository:
         else:
             return {"status": "error", "message": "Invalid password"}
         
+    def get_user(self, user_id):
+        user_data = self.collection.find_one({'user_id': user_id})
+        if not user_data:
+            return {"status": "error", "message": "User not found"}
+        user = User.from_dict(user_data)
+        return {"status": "success", "message": "User found", "user": user.to_dict()}
+        
     def update_password(self, email, password):
         user_data = self.collection.find_one({'email': email})
         if not user_data:
