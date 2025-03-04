@@ -164,6 +164,8 @@ def register_user():
     data = request.json
     if not all(key in data for key in ('username', 'email', 'password')):
         return jsonify({'error': 'All fields are required'}), 400
+    if re.match( r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', data['email']) == None:
+        return jsonify({"message": "Email格式不正確"}), 400
     response = auth_service.register_user(data['username'], data['email'], data['password'])
     return jsonify(response), 200 if response['status'] == 'success' else 400
 
@@ -176,6 +178,23 @@ def login_user():
     response = auth_service.login_user(data['email'], data['password'])
     return jsonify(response), 200 if response['status'] == 'success' else 400
 
+# request.json = {"email": ""}
+@bp.route('/user/forgot-password', methods=['POST'])
+def forgot_password():
+    data = request.json
+    if 'email' not in data:
+        return jsonify({'error': 'Email is required'}), 400
+    response = auth_service.forgot_password(data['email'])
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+# request.json = {"password": ""}
+@bp.route('/user/<email>/update-password', methods=['POST'])
+def update_password(email):
+    data = request.json
+    if 'password' not in data:
+        return jsonify({'error': 'Password is required'}), 400
+    response = auth_service.update_password(email, data['password'])
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
 @bp.route('/user/<user_id>/workspace/<workspace_id>', methods=['GET'])
 def add_workspace_to_user(user_id, workspace_id):
     response = auth_service.add_workspace_to_user(user_id, workspace_id)
@@ -185,3 +204,26 @@ def add_workspace_to_user(user_id, workspace_id):
 def remove_workspace_from_user(user_id, workspace_id):
     response = auth_service.remove_workspace_from_user(user_id, workspace_id)
     return jsonify(response), 200 if response['status'] == 'success' else 400
+
+@bp.route('/user/<user_id>', methods=['GET'])
+def get_user_workspaces(user_id):
+    response = auth_service.get_user(user_id)
+    return jsonify(response), 200 if response['status'] == 'success' else 400
+
+#放在backend_refactor-main\interfaces\web\routes，在 Flask API (Blueprint) 中加入學校分析的 API 端點。
+    # request.json = { "start": '', "end": '', "threshold": ''}
+@bp.route('/workspaces/<workspace_id>/analysis/institution', methods=['POST'])
+def institution_analysis(workspace_id):
+    data = request.json
+    result = service.institution_analysis(workspace_id, data['start'], data['end'], data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
+
+@bp.route('/workspaces/<workspace_id>/analysis/institution/year', methods=['POST'])
+def institution_analysis_by_year(workspace_id):
+    data = request.json
+    result = service.institution_analysis_year(workspace_id, data['start'], data['end'], data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404

@@ -4,6 +4,7 @@ from service.keyword_analysis import KeywordAnalysis
 from service.author_analysis import AuthorAnalysis
 from service.reference_analysis import ReferenceAnalysis
 from service.field_analysis import FieldAnalysis
+from service.university_analysis import InstitutionAnalysis
 import uuid
 from datetime import datetime
 import base64
@@ -180,3 +181,36 @@ class WorkspaceService:
             return workspace.latest_result
         return None
 
+    
+    
+    #透過 WorkspaceService 獲取 workspace（工作區），並提取工作區內的文件並執行學校分析
+    def institution_analysis(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            # count, conditionCount, results 
+            count, conditionCount, results_institutions, results_publishers = InstitutionAnalysis.analyze(files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'institution_analysis',
+                'count': count,
+                'conditionCount': conditionCount,
+                'results_institutions': results_institutions,
+                'results_publishers': results_publishers
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
+    def institution_analysis_year(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            result = InstitutionAnalysis.institution_analysis_by_year(files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'institution_analysis_year',
+                'results': result
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
+    
