@@ -7,7 +7,7 @@ class User:
         self.email = email
         self.password = password
         self.created_at = created_at or datetime.now()
-        self.workspace_ids = []
+        self.workspace_ids = workspace_ids
 
     def to_dict(self):
         return {
