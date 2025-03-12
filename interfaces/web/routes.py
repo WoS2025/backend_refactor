@@ -227,3 +227,11 @@ def institution_analysis_by_year(workspace_id):
     if result:
         return jsonify(result), 200
     return jsonify({'error': 'no result'}), 404
+
+@bp.route('/workspaces/<workspace_id>/analysis/country/year', methods=['POST'])
+def country_analysis_year(workspace_id):
+    data = request.json
+    result = service.country_analysis_year(workspace_id, data['start'], data['end'], data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
