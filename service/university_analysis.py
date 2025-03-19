@@ -79,21 +79,21 @@ class InstitutionAnalysis:
         
         for file in files:
             content = file.get('content')
+            current_year = None  # 用來存放當前處理的年份
+            
             for line in content.split('\n'):
-                if line.startswith("C1 ") or line.startswith("RP "):
-                    institutions = line[3:].strip().split(';')
+                if line.startswith("PY "):
+                    current_year = int(line[3:].strip())
+                    if not (start <= current_year <= end):
+                        current_year = None  # 若年份不符合，重置
+                elif (line.startswith("C1 ") or line.startswith("RP ")) and current_year is not None:
+                    institutions = [school.strip() for school in line[3:].strip().split(';') if school.strip()]
                     for school in institutions:
-                        school = school.strip()
-                        if school:
-                            school_count[school] = school_count.get(school, 0) + 1
-                elif line.startswith("PY "):
-                    year = int(line[3:].strip())
-                    if not (start <= year <= end):
-                        continue
-        
+                        school_count[school] = school_count.get(school, 0) + 1
+
         sorted_schools = sorted(school_count.items(), key=lambda x: x[1], reverse=True)
         results_schools = []
-        
+
         for school in sorted_schools[:100]:
             if school[1] < threshold:
                 break
@@ -101,7 +101,9 @@ class InstitutionAnalysis:
                 'school': school[0],
                 'count': school[1]
             })
-        
+
         return results_schools
+
+
     
 
