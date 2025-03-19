@@ -1,5 +1,9 @@
-from flask import Blueprint, request, jsonify
+import json
+import os
+from urllib import response
+from flask import Blueprint, request, jsonify, send_file, Response
 import re
+import threading
 from infrastructure.repositories import Database
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
 from service.workspace_service import WorkspaceService
@@ -227,3 +231,18 @@ def institution_analysis_by_year(workspace_id):
     if result:
         return jsonify(result), 200
     return jsonify({'error': 'no result'}), 404
+
+@bp.route('/workspaces/<workspace_id>/download-analysis', methods=['GET'])
+def download_analysis(workspace_id):
+    result = service.get_analysis(workspace_id)
+    print(type(result)) # <class 'dict'>
+    if not result:
+        return jsonify({'error': 'No analysis result found'}), 404
+    
+    json_data = json.dumps(result, indent=4)
+
+    return Response(
+        json_data,
+        mimetype="application/json",
+        headers={"Content-disposition":
+                 f"attachment; filename=analysis_{result["type"]}.json"})
