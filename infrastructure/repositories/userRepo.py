@@ -31,7 +31,7 @@ class UserRepository:
         if not user_data:
             return {"status": "error", "message": "Email not found"}
         user = User.from_dict(user_data)
-        if check_password_hash(user.password, password):
+        if check_password_hash(user.password, password): 
             return {"status": "success", "message": "Login successful", "user": user.to_dict()}
         else:
             return {"status": "error", "message": "Invalid password"}
@@ -60,7 +60,8 @@ class UserRepository:
         user_data = self.collection.find_one ({'email': email})
         if not user_data:
             return None
-        return User.from_dict(user_data)
+        user = User.from_dict(user_data)
+        return {"status": "success", "message": "User found", "user": user.to_dict()}
     
     def add_workspace_to_user(self, user_id, workspace_id):
         user_data = self.collection.find_one({'user_id': user_id})
