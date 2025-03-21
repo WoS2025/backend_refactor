@@ -1,3 +1,6 @@
+import json
+import os
+from unittest import result
 from flask import Blueprint, request, jsonify
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
 from service.keyword_analysis import KeywordAnalysis
@@ -57,6 +60,19 @@ class WorkspaceService:
             if workspace.latest_result:
                 return workspace.latest_result       
         return None
+
+    def save_analysis_to_file(self, workspace_id, analysis):
+        # 假設結果存儲為 JSON 格式
+        file_path = f'temp/analysis_{workspace_id}.json'
+
+        # 確保 temp 資料夾存在
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        # 將結果保存為 JSON 檔案
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(result, f, ensure_ascii=False, indent=4)
+
+        return file_path
 
     def keyword_analysis(self, workspace_id, keyword):
         workspace = self.repo.get_workspace(workspace_id)

@@ -1,7 +1,10 @@
 from infrastructure.repositories.userRepo import UserRepository
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from domain.models.user import User
+
 import os
 
 class AuthService:
@@ -9,13 +12,18 @@ class AuthService:
         self.user_repo = UserRepository()
 
     def register_user(self, username, email, password):
+
         return self.user_repo.register_user(username, email, password)
 
     def login_user(self, email, password):
-        return self.user_repo.login_user(email, password)
+        response = self.user_repo.login_user(email, password)
+        return response
     
     def get_user(self, user_id):
         return self.user_repo.get_user(user_id)
+    
+    def get_user_by_email(self, email):
+        return self.user_repo.find_user_by_email(email)
     
     def update_password(self, email, password):
         return self.user_repo.update_password(email, password)
@@ -67,6 +75,21 @@ class AuthService:
             print("Email sent successfully")
         except Exception as e:
             print(f"Failed to send email: {e}")
+    
+    @staticmethod
+    def createjwt(user):
+        """
+        Generate a JWT for the given user instance."
+        """
+        if not isinstance(user, User):
+            raise ValueError("Expected a User instance")
+        return user.generate_jwt()
+    @staticmethod
+    def authenticate(self, token):
+        payload = self.verify_jwt(token)
+        if payload:
+            return payload  # Return user data from token
+        return None
 
 # Example usage:
 # auth_service = AuthService()
