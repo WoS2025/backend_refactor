@@ -77,6 +77,13 @@ def field_occurence_analysis(workspace_id):
         return jsonify(result), 200
     return jsonify({'error': 'No result'}), 404
 
+@analysis_bp.route('/country/year', methods=['POST'])
+def country_analysis_year(workspace_id):
+    data = request.json
+    result = workspace_service.country_analysis_year(workspace_id, data['start'], data['end'], data['threshold'])
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': 'no result'}), 404
 # 機構分析
 @analysis_bp.route('/institution', methods=['POST'])
 def institution_analysis(workspace_id):
