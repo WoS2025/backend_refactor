@@ -64648,7 +64648,7 @@ VL 2021
 AR 6692061
 DI 10.1155/2021/6692061
 PG 14
-WC Computer Science, Information Systems; Engineering, Electrical &
+WCWC Computer Science, Information Systems; Engineering, Electrical &
    Electronic; Telecommunications
 WE Science Citation Index Expanded (SCI-EXPANDED)
 SC Computer Science; Engineering; Telecommunications
