@@ -1,109 +1,116 @@
-import os
-import glob
-import requests
+import re
 
-#放在backend_refactor-main\service資料夾裡的學校分析功能
 class InstitutionAnalysis:
-    def analyze(files , start, end, threshold):
-        count = 0
-        conditionCount = 0
-        institution_count = dict()
-        publisher_count = dict()
+    def analyze(files, start, end, threshold):
+        total_count = 0
+        valid_count = 0
+        year_institution_data = {}  # 結構: {年份: {機構: 次數}}
+        publisher_count = {}
         
         for file in files:
-            fileName = file.get('name')
             content = file.get('content')
-            institution = ""
-            publisher = ""
-            insideC1 = False
-            insideRP = False
+            current_year = None
+            c1_buffer = []
             
             for line in content.split('\n'):
-                if line.startswith("TI "):
-                    count += 1
-                    insideC1 = False
-                    insideRP = False
+                # 提取年份
+                if line.startswith("PY "):
+                    current_year = int(line[3:].strip())
+                    total_count += 1
+                    if start <= current_year <= end:
+                        valid_count += 1
+                
+                # 處理C1區塊
                 elif line.startswith("C1 "):
-                    insideC1 = True
-                    institution += line[3:].strip() + ';'
-                elif line.startswith("   ") and insideC1:
-                    institution += line[3:].strip() + ';'
-                elif line.startswith("RP "):
-                    insideRP = True
-                    institution += line[3:].strip() + ';'
-                elif line.startswith("PU "):
+                    c1_buffer = [line[3:].strip()]
+                elif line.startswith("   ") and c1_buffer:
+                    c1_buffer.append(line[3:].strip())
+                else:
+                    if c1_buffer and current_year and (start <= current_year <= end):
+                        self._process_c1(c1_buffer, current_year, year_institution_data)
+                        c1_buffer = []
+                
+                # 處理出版社
+                if line.startswith("PU ") and current_year and (start <= current_year <= end):
                     publisher = line[3:].strip()
                     if publisher:
                         publisher_count[publisher] = publisher_count.get(publisher, 0) + 1
-                elif line.startswith("PY "):
-                    year = int(line[3:].strip())
-                    if start <= year <= end:
-                        if institution:
-                            conditionCount += 1
-                            institution = institution.strip(';').split(';')
-                            for inst in institution:
-                                inst = inst.strip()
-                                if inst:
-                                    institution_count[inst] = institution_count.get(inst, 0) + 1
-                    institution = ""
-                    insideC1 = False
-                    insideRP = False
-                else:
-                    insideC1 = False
-                    insideRP = False
+
+            # 處理文件末尾的C1殘留
+            if c1_buffer and current_year and (start <= current_year <= end):
+                self._process_c1(c1_buffer, current_year, year_institution_data)
+
+        # 整理機構數據
+        sorted_results = []
+        for year in sorted(year_institution_data.keys(), reverse=True):
+            institutions = year_institution_data[year]
+            filtered = [(k, v) for k, v in institutions.items() if v >= threshold]
+            sorted_institutions = sorted(filtered, key=lambda x: (-x[1], x[0]))[:100]
+            if sorted_institutions:
+                sorted_results.append({
+                    'year': year,
+                    'institutions': [{'name': k, 'count': v} for k, v in sorted_institutions]
+                })
+
+        # 整理出版社數據
+        sorted_publishers = sorted(
+            publisher_count.items(),
+            key=lambda x: (-x[1], x[0])
+        )[:100]
+
+        return {
+            'total': total_count,
+            'valid': valid_count,
+            'by_year': sorted_results,
+            'publishers': [{'name': k, 'count': v} for k, v in sorted_publishers]
+        }
+
+    @staticmethod
+    def _process_c1(c1_buffer, current_year, year_data):
+        c1_content = ' '.join(c1_buffer)
+        institutions = re.findall(r'\[.*?\]\s*([^,]+)', c1_content)
         
-        sorted_institutions = sorted(institution_count.items(), key=lambda x: x[1], reverse=True)
-        sorted_publishers = sorted(publisher_count.items(), key=lambda x: x[1], reverse=True)
-        
-        results_institutions = []
-        results_publishers = []
-        
-        for inst in sorted_institutions[:100]:
-            if inst[1] < threshold:
-                break
-            results_institutions.append({
-                'institution': inst[0],
-                'count': inst[1]
-            })
-        
-        for pub in sorted_publishers[:100]:
-            results_publishers.append({
-                'publisher': pub[0],
-                'count': pub[1]
-            })
-        
-        return count, conditionCount, results_institutions, results_publishers
+        if current_year not in year_data:
+            year_data[current_year] = {}
+            
+        for inst in institutions:
+            inst = inst.strip()
+            if inst:
+                year_data[current_year][inst] = year_data[current_year].get(inst, 0) + 1
 
     def institution_analysis_by_year(files, start, end, threshold):
-        school_count = dict()
+        year_school_data = {}
         
         for file in files:
             content = file.get('content')
-            current_year = None  # 用來存放當前處理的年份
+            current_year = None
+            c1_buffer = []
             
             for line in content.split('\n'):
                 if line.startswith("PY "):
                     current_year = int(line[3:].strip())
-                    if not (start <= current_year <= end):
-                        current_year = None  # 若年份不符合，重置
-                elif (line.startswith("C1 ") or line.startswith("RP ")) and current_year is not None:
-                    institutions = [school.strip() for school in line[3:].strip().split(';') if school.strip()]
-                    for school in institutions:
-                        school_count[school] = school_count.get(school, 0) + 1
+                elif line.startswith("C1 "):
+                    c1_buffer = [line[3:].strip()]
+                elif line.startswith("   ") and c1_buffer:
+                    c1_buffer.append(line[3:].strip())
+                else:
+                    if c1_buffer and current_year and (start <= current_year <= end):
+                        InstitutionAnalysis._process_c1(c1_buffer, current_year, year_school_data)
+                        c1_buffer = []
+            
+            if c1_buffer and current_year and (start <= current_year <= end):
+                InstitutionAnalysis._process_c1(c1_buffer, current_year, year_school_data)
 
-        sorted_schools = sorted(school_count.items(), key=lambda x: x[1], reverse=True)
-        results_schools = []
+        # 整理分年數據
+        sorted_results = []
+        for year in sorted(year_school_data.keys(), reverse=True):
+            schools = year_school_data[year]
+            filtered = [(k, v) for k, v in schools.items() if v >= threshold]
+            sorted_schools = sorted(filtered, key=lambda x: (-x[1], x[0]))[:100]
+            if sorted_schools:
+                sorted_results.append({
+                    'year': year,
+                    'schools': [{'school': k, 'count': v} for k, v in sorted_schools]
+                })
 
-        for school in sorted_schools[:100]:
-            if school[1] < threshold:
-                break
-            results_schools.append({
-                'school': school[0],
-                'count': school[1]
-            })
-
-        return results_schools
-
-
-    
-
+        return sorted_results

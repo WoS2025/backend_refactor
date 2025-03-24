@@ -22,7 +22,7 @@ class FieldAnalysis:
                     count += 1
                 elif line.startswith("SC "):
                     insideSC = True
-                    fieldAnalysis += line[3:].strip()
+                    fieldAnalysis += line[3:].trip()
                 elif line.startswith("   ") and insideSC:
                     fieldAnalysis += line[3:].strip()
                 elif line.startswith("PY "):
@@ -150,6 +150,13 @@ class FieldAnalysis:
                 'year': year[0],
                 'count': year[1]
             })
-        start = min(year_count.keys())
-        end = max(year_count.keys())
+        
+        # 檢查 year_count 是否為空
+        if not year_count:
+            start = None
+            end = None
+        else:
+            start = min(year_count.keys())
+            end = max(year_count.keys())
+        
         return count, conditionCount, start, end, results
