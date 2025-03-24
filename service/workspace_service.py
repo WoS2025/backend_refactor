@@ -199,6 +199,18 @@ class WorkspaceService:
         return None
 
     
+    def country_analysis_year(self, workspace_id, start, end, threshold):
+        workspace = self.repo.get_workspace(workspace_id)
+        if workspace:
+            files = workspace.files
+            result = CountryAnalysis.country_analysis_by_year(files, start, end, threshold)
+            workspace.latest_result = {
+                'type': 'country_analysis_year',
+                'results': result
+            }
+            self.repo.update_workspace(workspace)
+            return workspace.latest_result
+        return None
     
     #透過 WorkspaceService 獲取 workspace（工作區），並提取工作區內的文件並執行學校分析
     def institution_analysis(self, workspace_id, start, end, threshold):
