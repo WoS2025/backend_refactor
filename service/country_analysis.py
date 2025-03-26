@@ -3,7 +3,7 @@ import glob
 import requests
 
 class CountryAnalysis:
-    def country_analysis_by_year(files, start, end, threshold):
+    def country_analysis_by_year(files, filesToAnalyze, start, end, threshold):
         count = 0
         conditionCount = 0
         country_count = {}

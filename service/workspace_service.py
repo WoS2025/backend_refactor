@@ -247,12 +247,16 @@ class WorkspaceService:
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             files = workspace.files
-            result = CountryAnalysis.country_analysis_by_year(files, start, end, threshold)
+            count, conditionCount, results = CountryAnalysis.country_analysis_by_year(files, files, start, end, threshold)
             workspace.latest_result = {
-                'type': 'country_analysis_year',
-                'results': result
+                'type': 'country_analysis',
+                'count': count,
+                'conditionCount': conditionCount,
+                'conditionCount': conditionCount,
+                'results': results
             }
             self.repo.update_workspace(workspace)
             return workspace.latest_result
-        return None
+        return None 
+
     
