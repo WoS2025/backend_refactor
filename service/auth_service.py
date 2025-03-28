@@ -40,7 +40,7 @@ class AuthService:
             return {"status": "error", "message": "Email not found"}
 
         # Generate a reset password link or token (for simplicity, using a dummy link here)
-        reset_link = f"http://backend-refactor-nqz1.onrender.com/reset-password?email={email}"
+        reset_link = f"https://backend-refactor-1as7.onrender.com/reset-password?email={email}"
 
         # Send email
         self.send_reset_email(email, reset_link)
@@ -48,7 +48,7 @@ class AuthService:
         return {"status": "success", "message": "Password reset email sent"}
 
     def send_reset_email(self, to_email, reset_link):
-        from_email = "noreply@backend-refactor-nqz1.onrender.com"
+        from_email = "noreply@backend-refactor-1as7.onrender.com"
         gmail_user = "cengjianzhi18@gmail.com"
         # gmail_password = os.getenv('GMAIL_PASSWORD')  # Use an environment variable for the password
         gmail_app_password = os.getenv('GMAIL_APP_PASSWORD')
