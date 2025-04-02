@@ -1,4 +1,4 @@
-# 📌 後端 API 完整文檔 (26 個端點)
+# 📌 後端 API (26 個端點)
 
 ## 📍 基本資訊  
 **Base URL**: `https://backend-refactor-nqz1.onrender.com`  
