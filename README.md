@@ -22,7 +22,7 @@
 
 ## 🌐 基本 URL
 ```
-http://yourdomain.com/api/user
+https://backend-refactor-nqz1.onrender.com
 ```
 
 ---
