@@ -112,7 +112,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 5️⃣ 更新密碼
-#### **POST /user/<email>/update-password**
+#### **POST `/user/<email>/update-password`**
 📝 **描述：** 更新使用者密碼。
 
 📩 **請求 Body：**
