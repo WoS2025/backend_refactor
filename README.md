@@ -22,7 +22,7 @@
 
 ## 🌐 基本 URL
 ```
-https://backend-refactor-1as7.onrender.com/
+http://yourdomain.com/api/user
 ```
 
 ---
@@ -30,7 +30,7 @@ https://backend-refactor-1as7.onrender.com/
 ## ⚡ API 端點
 
 ### 1️⃣ 測試 API
-#### **GET /user/**
+#### **GET `/user/`**
 📝 **描述：** 測試 API 是否正常運行。
 
 ✅ **回應範例：**
@@ -41,7 +41,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 2️⃣ 註冊使用者
-#### **POST /user/register**
+#### **POST `/user/register`**
 📝 **描述：** 註冊新使用者。
 
 📩 **請求 Body：**
@@ -64,7 +64,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 3️⃣ 使用者登入
-#### **POST /user/login**
+#### **POST `/user/login`**
 📝 **描述：** 驗證使用者身份並返回 JWT 令牌。
 
 📩 **請求 Body：**
@@ -91,7 +91,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 4️⃣ 忘記密碼
-#### **POST /user/forgot-password**
+#### **POST `/user/forgot-password`**
 📝 **描述：** 發送重設密碼的郵件。
 
 📩 **請求 Body：**
@@ -133,7 +133,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 6️⃣ 取得使用者的工作空間
-#### **GET /user/<user_id>**
+#### **GET `/user/<user_id>`**
 📝 **描述：** 獲取使用者詳細資訊及其關聯的工作空間。
 
 ✅ **回應範例：**
@@ -153,7 +153,7 @@ https://backend-refactor-1as7.onrender.com/
 ---
 
 ### 7️⃣ 透過 Email 獲取使用者資訊 (需 JWT)
-#### **GET /user/email/<email>**
+#### **GET `/user/email/<email>`**
 📝 **描述：** 透過 Email 獲取使用者資訊 (需要 JWT 令牌)。
 
 🔐 **請求標頭：**
@@ -176,7 +176,7 @@ Authorization: Bearer <your-jwt-token>
 ---
 
 ### 8️⃣ 為使用者新增工作空間
-#### **GET /user/<user_id>/workspace/<workspace_id>**
+#### **GET `/user/<user_id>/workspace/<workspace_id>`**
 📝 **描述：** 新增工作空間至使用者帳戶。
 
 ✅ **回應範例：**
@@ -190,7 +190,7 @@ Authorization: Bearer <your-jwt-token>
 ---
 
 ### 9️⃣ 移除使用者的工作空間
-#### **DELETE /user/<user_id>/workspace/<workspace_id>**
+#### **DELETE `/user/<user_id>/workspace/<workspace_id>`**
 📝 **描述：** 從使用者帳戶中移除工作空間。
 
 ✅ **回應範例：**
