@@ -1,7 +1,7 @@
 # 📌 後端 API (26 個端點)
 
 ## 📍 基本資訊  
-**Base URL**: `https://backend-refactor-nqz1.onrender.com`  
+**Base URL**: `https://backend-refactor-1as7.onrender.com` 
 所有路徑參數需替換為實際值（如 `workspace_id`），錯誤回應皆包含 `error` 字段說明原因。
 
 ---
