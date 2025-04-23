@@ -3,15 +3,20 @@ import pytest
 import requests
 
 BASE_URL = "http://127.0.0.1:5000/user"
-EXISTING_USER_ID = "fb0965e5-2288-48a7-be44-ffb6fe4e5b36"
-EXISTING_USER_EMAIL = "zxcv7898@gmail.com"
-EXISTING_USER_PASSWORD = "zxcv7898"
+EXISTING_USER_EMAIL = "a12345@gmail.com"
+EXISTING_USER_PASSWORD = "Allen9384"
 EXISTING_WORKSPACE_ID = "200270e4-2982-4091-8424-e3817969ca80"
-
+ANALYSIS_URL = "http://127.0.0.1:5000/analysis"
 def get_jwt():
     payload = {"email": EXISTING_USER_EMAIL, "password": EXISTING_USER_PASSWORD}
     response = requests.post(f"{BASE_URL}/login", json=payload)
     return response.json().get("jwt")
+
+def get_user_id():
+    jwt = get_jwt()
+    headers = {"Authorization": f"Bearer {jwt}"}
+    r = requests.get(f"{BASE_URL}/email/{EXISTING_USER_EMAIL}", headers=headers)
+    return r.json()["user"]["user_id"]
 
 def test_home():
     r = requests.get(f"{BASE_URL}/")
@@ -36,7 +41,8 @@ def test_get_user_by_email():
     assert r.status_code == 200 and r.json()["status"] == "success"
 
 def test_get_user_workspaces():
-    r = requests.get(f"{BASE_URL}/{EXISTING_USER_ID}")
+    user_id = get_user_id()
+    r = requests.get(f"{BASE_URL}/{user_id}")
     data = r.json()
     assert data['status'] == 'success' and data['user']['email'] == EXISTING_USER_EMAIL
 
@@ -49,22 +55,43 @@ def test_forgot_password():
     assert r.status_code == 200
 
 def test_update_password():
-    r = requests.post(f"{BASE_URL}/user/{EXISTING_USER_EMAIL}/update-password", json={"password": "newpass123"})
+    original_password = EXISTING_USER_PASSWORD
+    new_password = "newpass123"
+
+    # 修改密碼
+    r = requests.post(f"{BASE_URL}/user/{EXISTING_USER_EMAIL}/update-password", json={"password": new_password})
     assert r.status_code in [200, 400]
 
+    # 驗證新密碼是否有效
+    login_payload = {"email": EXISTING_USER_EMAIL, "password": new_password}
+    login_response = requests.post(f"{BASE_URL}/login", json=login_payload)
+    assert login_response.status_code == 200
+
+    # 還原原密碼
+    restore = requests.post(f"{BASE_URL}/user/{EXISTING_USER_EMAIL}/update-password", json={"password": original_password})
+    assert restore.status_code in [200, 400]
+
+    # 驗證原密碼還原成功
+    check_original = requests.post(f"{BASE_URL}/login", json={"email": EXISTING_USER_EMAIL, "password": original_password})
+    assert check_original.status_code == 200
+
 def test_add_workspace():
-    r = requests.get(f"{BASE_URL}/{EXISTING_USER_ID}/workspace/workspace123")
+    user_id = get_user_id()
+    r = requests.get(f"{BASE_URL}/{user_id}/workspace/workspace123")
     assert r.status_code == 200
 
 def test_remove_workspace():
-    r = requests.delete(f"{BASE_URL}/{EXISTING_USER_ID}/workspace/workspace123")
+    user_id = get_user_id()
+    r = requests.delete(f"{BASE_URL}/{user_id}/workspace/workspace123")
     assert r.status_code == 200
 
 # === ANALYSIS ===
 
 def post_analysis(endpoint, payload):
-    return requests.post(f"{BASE_URL}/{endpoint}?workspace_id={EXISTING_WORKSPACE_ID}", json=payload)
-
+    jwt = get_jwt()
+    headers = {"Authorization": f"Bearer {jwt}"}
+    return requests.post(f"{ANALYSIS_URL}/{endpoint}?workspace_id={EXISTING_WORKSPACE_ID}",
+                         headers=headers, json=payload)
 def test_keyword_analysis():
     r = post_analysis("keyword", {"keyword": "AI"})
     assert r.status_code in [200, 404]
@@ -110,9 +137,9 @@ def test_institution_year():
     assert r.status_code in [200, 404]
 
 def test_result():
-    r = requests.get(f"{BASE_URL}/result?workspace_id={EXISTING_WORKSPACE_ID}")
+    r = requests.get(f"{ANALYSIS_URL}/result?workspace_id={EXISTING_WORKSPACE_ID}")
     assert r.status_code in [200, 404]
 
 def test_download():
-    r = requests.get(f"{BASE_URL}/download?workspace_id={EXISTING_WORKSPACE_ID}")
+    r = requests.get(f"{ANALYSIS_URL}/download?workspace_id={EXISTING_WORKSPACE_ID}")
     assert r.status_code in [200, 404]
