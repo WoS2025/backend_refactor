@@ -58,7 +58,7 @@ def add_file_to_workspace(workspace_id):
         if not result:
             return jsonify({'error': 'Workspace not found'}), 404
 
-    return '', 204
+    return jsonify({'message': 'Files uploaded successfully and analysis started'}), 200
 
 @workspace_bp.route('/<workspace_id>/files/<file_name>', methods=['DELETE'])
 def remove_file_from_workspace(workspace_id, file_name):

@@ -6,7 +6,7 @@ bp = Blueprint('main', __name__)
 
 def register_blueprints(app: Flask):
     app.register_blueprint(user_bp, url_prefix='/user')
-    app.register_blueprint(workspace_bp, url_prefix='/workspaces')
+    app.register_blueprint(workspace_bp, url_prefix='/user/workspaces')
 
 
 

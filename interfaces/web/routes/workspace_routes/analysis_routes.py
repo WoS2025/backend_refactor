@@ -124,3 +124,34 @@ def download_analysis(workspace_id):
         mimetype="application/json",
         headers={"Content-disposition": f"attachment; filename=analysis_{workspace_id}.json"}
     )
+
+# 獲取所有分析結果
+@analysis_bp.route('/all', methods=['GET'])
+def get_all_analysis_results(workspace_id):
+    if not workspace_service.get_workspace(workspace_id):
+        return jsonify({'error': 'Workspace not found'}), 404
+    
+    results = workspace_service.get_all_analysis_results(workspace_id)
+    if results:
+        return jsonify(results), 200
+    return jsonify({'error': 'No analysis results found'}), 404
+
+# 根據類型獲取分析結果
+@analysis_bp.route('/type/<analysis_type>', methods=['GET'])
+def get_analysis_by_type(workspace_id, analysis_type):
+    if not workspace_service.get_workspace(workspace_id):
+        return jsonify({'error': 'Workspace not found'}), 404
+    
+    result = workspace_service.get_analysis_by_type(workspace_id, analysis_type)
+    if result:
+        return jsonify(result), 200
+    return jsonify({'error': f'No {analysis_type} analysis results found'}), 404
+
+# 手動觸發所有分析
+@analysis_bp.route('/run-all', methods=['POST'])
+def run_all_analysis(workspace_id):
+    if not workspace_service.get_workspace(workspace_id):
+        return jsonify({'error': 'Workspace not found'}), 404
+    
+    workspace_service._run_all_analysis(workspace_id)
+    return jsonify({'message': 'All analysis completed'}), 200

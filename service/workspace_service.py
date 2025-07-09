@@ -3,6 +3,7 @@ import os
 from unittest import result
 from flask import Blueprint, request, jsonify
 from infrastructure.repositories.workspaceRepo import WorkspaceRepo
+from infrastructure.repositories.analysisRepo import AnalysisRepo
 from service.keyword_analysis import KeywordAnalysis
 from service.author_analysis import AuthorAnalysis
 from service.reference_analysis import ReferenceAnalysis
@@ -16,6 +17,7 @@ import base64
 class WorkspaceService:
     def __init__(self):
         self.repo = WorkspaceRepo()
+        self.analysis_repo = AnalysisRepo()
 
     def get_workspaces(self):
         return self.repo.get_workspaces()
@@ -43,7 +45,10 @@ class WorkspaceService:
         if workspace:
             workspace.add_file(file)
             update_result = self.repo.update_workspace(workspace)
-            return update_result.modified_count > 0
+            if update_result.modified_count > 0:
+                # 文件添加成功後，自動執行所有分析
+                self._run_all_analysis(workspace_id)
+                return True
         return False
 
     def remove_file_from_workspace(self, workspace_id, file_name):
@@ -257,6 +262,71 @@ class WorkspaceService:
             }
             self.repo.update_workspace(workspace)
             return workspace.latest_result
-        return None 
-
+        return None
     
+    def _run_all_analysis(self, workspace_id):
+        """執行所有分析功能並保存結果"""
+        workspace = self.repo.get_workspace(workspace_id)
+        if not workspace or not workspace.files:
+            return
+
+        # 預設參數
+        default_params = {
+            'start': 2000,
+            'end': 2025,
+            'threshold': 1
+        }
+
+        try:
+            # 1. 關鍵字出現次數分析
+            result = self.keyword_analysis_occurence(workspace_id, default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'keyword_occurence', result)
+
+            # 2. 作者年份分析
+            result = self.author_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'author_year', result)
+
+            # 3. 引用分析
+            result = self.reference_analysis(workspace_id, default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'reference', result)
+
+            # 4. 領域出現次數分析
+            result = self.field_analysis_occurence(workspace_id, default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'field_occurence', result)
+
+            # 5. 領域年份分析
+            result = self.field_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'field_year', result)
+
+            # 6. 機構分析
+            result = self.institution_analysis(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'institution', result)
+
+            # 7. 機構年份分析
+            result = self.institution_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'institution_year', result)
+
+            # 8. 國家年份分析
+            result = self.country_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+            if result:
+                self.analysis_repo.save_analysis(workspace_id, 'country_year', result)
+
+        except Exception as e:
+            print(f"Analysis error for workspace {workspace_id}: {str(e)}")
+
+    def get_all_analysis_results(self, workspace_id):
+        """獲取工作區的所有最新分析結果"""
+        return self.analysis_repo.get_latest_analysis(workspace_id)
+
+    def get_analysis_by_type(self, workspace_id, analysis_type):
+        """根據類型獲取分析結果"""
+        results = self.analysis_repo.get_analysis(workspace_id, analysis_type)
+        return results[-1] if results else None
+
