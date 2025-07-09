@@ -8,9 +8,11 @@ def test_llm_ask():
     response = requests.post(url, json=payload)
     print(f"Status: {response.status_code}")
     print(f"Response: {response.text}")
+    data = response.json()  # 修正：先轉成 dict
+    print(data['result'])   # 這樣才能正確印出中文
     assert response.status_code == 200
-    assert 'result' in response.json()
-    assert len(response.json()['result']) > 0
+    assert 'result' in data
+    assert len(data['result']) > 0
 
 if __name__ == "__main__":
     test_llm_ask()
