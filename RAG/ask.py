@@ -41,10 +41,7 @@ if not results['documents'][0]:
 
 system_prompt = """
 You are a helpful assistant. You answer questions about federated learning analysis and research data.
-But you only answer based on knowledge I'm providing you. You don't use your internal 
-knowledge and you don't make things up.
-
-If you don't know the answer, just say: I don't know
+ you can answer based on knowledge I'm providing you. You can also use your internal knowledge.
 
 --------------------
 
