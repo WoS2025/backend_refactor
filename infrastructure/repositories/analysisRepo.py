@@ -32,7 +32,12 @@ class AnalysisRepo:
             {'$sort': {'created_at': -1}},
             {'$group': {
                 '_id': '$analysis_type',
-                'latest_result': {'$first': '$$ROOT'}
+                'latest_result': {'$first': {
+                    'workspace_id': '$workspace_id',
+                    'analysis_type': '$analysis_type',
+                    'result': '$result',
+                    'created_at': '$created_at'
+                }}
             }}
         ]
         results = list(collection.aggregate(pipeline))
