@@ -17,7 +17,7 @@ client = OpenAI()
 # Chat history to remember conversation
 chat_history = []
 
-print("🤖 RAG Chat Assistant - Federated Learning Research")
+print(" RAG Chat Assistant - Federated Learning Research")
 print("Ask me anything about federated learning research!")
 print("Type 'quit', 'exit', or 'bye' to end the conversation.\n")
 
@@ -82,7 +82,7 @@ Instructions:
         # Prepare messages for OpenAI (system + history + current)
         messages = [{"role": "system", "content": system_prompt}] + chat_history
         
-        print("\n🤖 Assistant: ", end="", flush=True)
+        print("\nWOS Assistant: ", end="", flush=True)
         
         # Call OpenAI API
         response = client.chat.completions.create(
