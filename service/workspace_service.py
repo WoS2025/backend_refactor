@@ -208,10 +208,12 @@ class WorkspaceService:
         workspace = self.repo.get_workspace(workspace_id)
         if workspace:
             files = workspace.files
-            result = CountryAnalysis.country_analysis_by_year(files, start, end, threshold)
+            count, conditionCount, results = CountryAnalysis.country_analysis_by_year(files, files, start, end, threshold)
             workspace.latest_result = {
                 'type': 'country_analysis_year',
-                'results': result
+                'count': count,
+                'conditionCount': conditionCount,
+                'results': results
             }
             self.repo.update_workspace(workspace)
             return workspace.latest_result
@@ -248,22 +250,6 @@ class WorkspaceService:
             return workspace.latest_result
         return None
     
-    def country_analysis_year(self, workspace_id, start, end, threshold):
-        workspace = self.repo.get_workspace(workspace_id)
-        if workspace:
-            files = workspace.files
-            count, conditionCount, results = CountryAnalysis.country_analysis_by_year(files, files, start, end, threshold)
-            workspace.latest_result = {
-                'type': 'country_analysis',
-                'count': count,
-                'conditionCount': conditionCount,
-                'conditionCount': conditionCount,
-                'results': results
-            }
-            self.repo.update_workspace(workspace)
-            return workspace.latest_result
-        return None
-    
     def _run_all_analysis(self, workspace_id):
         """執行所有分析功能並保存結果"""
         workspace = self.repo.get_workspace(workspace_id)
@@ -279,47 +265,95 @@ class WorkspaceService:
 
         try:
             # 1. 關鍵字出現次數分析
-            result = self.keyword_analysis_occurence(workspace_id, default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'keyword_occurence', result)
+            try:
+                result = self.keyword_analysis_occurence(workspace_id, default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'keyword_occurence', result)
+                    print(f"✓ keyword_occurence analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ keyword_occurence analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ keyword_occurence analysis error for workspace {workspace_id}: {str(e)}")
 
             # 2. 作者年份分析
-            result = self.author_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'author_year', result)
+            try:
+                result = self.author_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'author_year', result)
+                    print(f"✓ author_year analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ author_year analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ author_year analysis error for workspace {workspace_id}: {str(e)}")
 
             # 3. 引用分析
-            result = self.reference_analysis(workspace_id, default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'reference', result)
+            try:
+                result = self.reference_analysis(workspace_id, default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'reference', result)
+                    print(f"✓ reference analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ reference analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ reference analysis error for workspace {workspace_id}: {str(e)}")
 
             # 4. 領域出現次數分析
-            result = self.field_analysis_occurence(workspace_id, default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'field_occurence', result)
+            try:
+                result = self.field_analysis_occurence(workspace_id, default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'field_occurence', result)
+                    print(f"✓ field_occurence analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ field_occurence analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ field_occurence analysis error for workspace {workspace_id}: {str(e)}")
 
             # 5. 領域年份分析
-            result = self.field_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'field_year', result)
+            try:
+                result = self.field_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'field_year', result)
+                    print(f"✓ field_year analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ field_year analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ field_year analysis error for workspace {workspace_id}: {str(e)}")
 
             # 6. 機構分析
-            result = self.institution_analysis(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'institution', result)
+            try:
+                result = self.institution_analysis(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'institution', result)
+                    print(f"✓ institution analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ institution analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ institution analysis error for workspace {workspace_id}: {str(e)}")
 
             # 7. 機構年份分析
-            result = self.institution_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'institution_year', result)
+            try:
+                result = self.institution_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'institution_year', result)
+                    print(f"✓ institution_year analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ institution_year analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ institution_year analysis error for workspace {workspace_id}: {str(e)}")
 
             # 8. 國家年份分析
-            result = self.country_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
-            if result:
-                self.analysis_repo.save_analysis(workspace_id, 'country_year', result)
+            try:
+                result = self.country_analysis_year(workspace_id, default_params['start'], default_params['end'], default_params['threshold'])
+                if result:
+                    self.analysis_repo.save_analysis(workspace_id, 'country_year', result)
+                    print(f"✓ country_year analysis completed for workspace {workspace_id}")
+                else:
+                    print(f"✗ country_year analysis returned no result for workspace {workspace_id}")
+            except Exception as e:
+                print(f"✗ country_year analysis error for workspace {workspace_id}: {str(e)}")
 
         except Exception as e:
-            print(f"Analysis error for workspace {workspace_id}: {str(e)}")
+            print(f"General analysis error for workspace {workspace_id}: {str(e)}")
 
     def get_all_analysis_results(self, workspace_id):
         """獲取工作區的所有最新分析結果"""

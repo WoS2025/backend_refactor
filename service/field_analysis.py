@@ -22,7 +22,7 @@ class FieldAnalysis:
                     count += 1
                 elif line.startswith("SC "):
                     insideSC = True
-                    fieldAnalysis += line[3:].trip()
+                    fieldAnalysis += line[3:].strip()
                 elif line.startswith("   ") and insideSC:
                     fieldAnalysis += line[3:].strip()
                 elif line.startswith("PY "):
