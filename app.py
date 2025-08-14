@@ -3,6 +3,7 @@ from flask_cors import CORS
 from interfaces.web.routes.__init__ import register_blueprints, bp as main_bp
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from datetime import timedelta
 import os
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ register_blueprints(app)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 app.config['JWT_SECRET_KEY'] = SECRET_KEY
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)  # JWT 有效期設為 24 小時
 jwt = JWTManager(app)
 
 # 處理 OPTIONS 請求
