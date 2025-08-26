@@ -11,14 +11,14 @@ DATA_PATH = os.path.join(script_dir, "data")
 CHROMA_PATH = os.path.join(script_dir, "chroma_db")
 
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
-collection = chroma_client.get_or_create_collection(name="federated_analysis")
+collection = chroma_client.get_or_create_collection(name="llm_analysis_clean")
 client = OpenAI()
 
 # Chat history to remember conversation
 chat_history = []
 
-print(" RAG Chat Assistant - Federated Learning Research")
-print("Ask me anything about federated learning research!")
+print(" RAG Chat Assistant - Large Language Model Research")
+print("Ask me anything about large language model (LLM) research!")
 print("Type 'quit', 'exit', or 'bye' to end the conversation.\n")
 
 def add_to_history(role, content):
@@ -67,7 +67,7 @@ while True:
         
         # Create system prompt with context
         system_prompt = f"""
-You are a helpful assistant for federated learning research. You can answer based on the provided research data and also use your general knowledge about federated learning.
+You are a helpful assistant for large language model (LLM) research. You can answer based on the provided research data and also use your general knowledge about large language models.
 
 Current Research Data:
 {rag_context}
@@ -82,7 +82,7 @@ Instructions:
         # Prepare messages for OpenAI (system + history + current)
         messages = [{"role": "system", "content": system_prompt}] + chat_history
         
-        print("\nWOS Assistant: ", end="", flush=True)
+        print("\nLLM Assistant: ", end="", flush=True)
         
         # Call OpenAI API
         response = client.chat.completions.create(
@@ -104,6 +104,9 @@ Instructions:
         # Add assistant response to history
         add_to_history("assistant", assistant_response)
         
+    except EOFError:
+        print("\n\n👋 Input stream ended. Goodbye!")
+        break
     except KeyboardInterrupt:
         print("\n\n👋 Chat interrupted. Goodbye!")
         break

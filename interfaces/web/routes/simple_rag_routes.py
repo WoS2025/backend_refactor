@@ -53,7 +53,7 @@ def chat():
             
             # Create enhanced system prompt with conversation context
             system_prompt = f"""
-You are a helpful assistant for federated learning research. You can answer based on the provided research data and also use your general knowledge about federated learning.
+You are a helpful assistant for large language model (LLM) research. You can answer based on the provided research data and also use your general knowledge about large language models.
 
 Current Research Data:
 {rag_context}
