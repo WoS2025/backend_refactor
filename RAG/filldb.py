@@ -30,98 +30,221 @@ documents = []
 metadata = []
 ids = []
 
-for i, item in enumerate(json_data):
-    analysis_type = item.get('analysis_type', 'unknown')
-    result = item.get('result', {})
+def create_semantic_chunks(analysis_type, result, base_id):
+    """Create semantic chunks that can be matched by vector similarity"""
+    chunks = []
+    chunk_metadata = []
+    chunk_ids = []
     
-    # Create more searchable content based on analysis type
     if analysis_type == 'keyword_occurence':
-        # Create keyword-focused content
         keywords = result.get('results', [])
-        top_keywords = keywords[:20]  # Get top 20 keywords
+        total_count = result.get('titleCount', 0)
         
-        text_content = f"""
-Analysis Type: Keyword Analysis
-This contains the top keywords found in federated learning research.
-Top Keywords by Frequency:
+        # Create chunks based on semantic groups rather than frequency tiers
+        # Let ChromaDB's embedding model understand the semantic relationships
+        
+        # Chunk 1: Overview and context
+        overview_chunk = f"""
+Federated Learning Keyword Analysis Overview
+
+This analysis examines keyword frequency patterns in {total_count} federated learning research papers. The analysis reveals the most commonly discussed topics, technical approaches, and application areas in federated learning research. This dataset helps understand the research landscape, trending topics, and technical focus areas within the federated learning community.
+
+Key insights: The analysis covers a wide range of keywords from core federated learning concepts to specific technical implementations, privacy preservation methods, and application domains.
 """
-        for idx, kw in enumerate(top_keywords, 1):
-            text_content += f"{idx}. {kw.get('keyword', '')}: {kw.get('count', 0)} occurrences\n"
+        chunks.append(overview_chunk)
+        chunk_ids.append(f"{base_id}_overview")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "overview",
+            "total_keywords": len(keywords),
+            "paper_count": total_count
+        })
         
-        text_content += f"\nTotal title count: {result.get('titleCount', 0)}\n"
-        text_content += f"Analysis covers keyword frequency analysis of federated learning research papers.\n"
+        # Chunk 2: All keywords in a searchable format
+        # Create a comprehensive but natural text that includes all keywords with context
+        all_keywords_chunk = f"""
+Complete Keyword Frequency Analysis for Federated Learning Research
+
+The following represents all identified keywords and their occurrence frequencies across {total_count} federated learning research papers:
+
+"""
+        for kw in keywords:
+            keyword_text = kw.get('keyword', '')
+            count = kw.get('count', 0)
+            # Add context to make it more semantically rich
+            all_keywords_chunk += f"The term '{keyword_text}' appears in {count} papers, indicating its relevance to federated learning research. "
+            
+        all_keywords_chunk += f"\n\nThis comprehensive keyword analysis reveals the breadth of topics covered in federated learning research, from core algorithmic concepts to practical implementation challenges and application domains."
+        
+        chunks.append(all_keywords_chunk)
+        chunk_ids.append(f"{base_id}_complete")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "complete_keywords",
+            "total_keywords": len(keywords),
+            "paper_count": total_count
+        })
         
     elif analysis_type == 'author_year':
-        # Create author-focused content
         authors = result.get('results', [])
-        top_authors = authors[:20]  # Get top 20 authors
+        total_count = result.get('count', 0)
         
-        text_content = f"""
-Analysis Type: Author Analysis
-This contains the top authors in federated learning research.
-Top Authors by Publication Count:
+        # Overview chunk
+        overview_chunk = f"""
+Federated Learning Author Publication Analysis Overview
+
+This analysis identifies the most prolific authors in federated learning research based on publication frequency across {total_count} research papers. Understanding author productivity helps identify key researchers, research groups, and academic centers contributing to federated learning advancement.
+
+This data reveals research leadership patterns, collaboration networks, and institutional contributions to the federated learning field.
 """
-        for idx, author in enumerate(top_authors, 1):
-            text_content += f"{idx}. {author.get('author', '')}: {author.get('count', 0)} publications\n"
+        chunks.append(overview_chunk)
+        chunk_ids.append(f"{base_id}_overview")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "overview",
+            "total_authors": len(authors),
+            "paper_count": total_count
+        })
         
-        text_content += f"\nTotal authors analyzed: {result.get('count', 0)}\n"
-        text_content += f"Analysis covers author publication frequency in federated learning research.\n"
+        # Complete authors chunk
+        all_authors_chunk = f"""
+Complete Author Publication Frequency Analysis for Federated Learning Research
+
+The following represents all authors and their publication frequencies in federated learning research:
+
+"""
+        for author in authors:
+            author_name = author.get('author', '')
+            count = author.get('count', 0)
+            all_authors_chunk += f"Author {author_name} has published {count} papers in federated learning research, demonstrating their contribution to this field. "
+            
+        all_authors_chunk += f"\n\nThis author analysis helps identify research leaders, prolific contributors, and emerging researchers in the federated learning community."
+        
+        chunks.append(all_authors_chunk)
+        chunk_ids.append(f"{base_id}_complete")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "complete_authors",
+            "total_authors": len(authors),
+            "paper_count": total_count
+        })
         
     elif analysis_type == 'reference':
-        # Create reference-focused content
         references = result.get('results', [])
-        top_references = references[:20]  # Get top 20 references
+        total_count = result.get('count', 0)
         
-        text_content = f"""
-Analysis Type: Reference Analysis
-This contains the most cited papers in federated learning research.
-Top Referenced Papers by Citation Count:
+        # Overview chunk
+        overview_chunk = f"""
+Federated Learning Reference Citation Analysis Overview
+
+This analysis identifies the most frequently cited papers in federated learning research based on citation patterns across {total_count} research papers. Understanding citation patterns helps identify seminal works, influential papers, and foundational research that shapes the federated learning field.
+
+This data reveals research impact, knowledge evolution, and fundamental contributions that define federated learning as a research area.
 """
-        for idx, ref in enumerate(top_references, 1):
+        chunks.append(overview_chunk)
+        chunk_ids.append(f"{base_id}_overview")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "overview",
+            "total_references": len(references),
+            "paper_count": total_count
+        })
+        
+        # Complete references chunk
+        all_references_chunk = f"""
+Complete Citation Frequency Analysis for Federated Learning Research
+
+The following represents all referenced papers and their citation frequencies in federated learning research:
+
+"""
+        for ref in references:
             title = ref.get('title', '')
             authors = ref.get('author', [])
             count = ref.get('count', 0)
-            author_str = ', '.join(authors) if authors else 'Unknown'
-            text_content += f"{idx}. \"{title}\" by {author_str}: {count} citations\n"
+            author_str = ', '.join(authors) if authors else 'Unknown authors'
+            all_references_chunk += f'The paper titled "{title}" by {author_str} has been cited {count} times in federated learning research, indicating its impact on the field. '
+            
+        all_references_chunk += f"\n\nThis reference analysis reveals the most influential papers that have shaped federated learning research and continue to guide new developments in the field."
         
-        text_content += f"\nTotal papers analyzed: {result.get('count', 0)}\n"
-        text_content += f"Analysis covers citation frequency of federated learning research papers.\n"
+        chunks.append(all_references_chunk)
+        chunk_ids.append(f"{base_id}_complete")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "complete_references",
+            "total_references": len(references),
+            "paper_count": total_count
+        })
         
     elif analysis_type == 'field_occurence':
-        # Create field-focused content
         fields = result.get('results', [])
-        top_fields = fields[:20]  # Get top 20 fields
+        total_count = result.get('titleCount', 0)
         
-        text_content = f"""
-Analysis Type: Field Analysis
-This contains the top research fields in federated learning.
-Top Research Fields by Frequency:
+        # Overview chunk
+        overview_chunk = f"""
+Federated Learning Research Field Distribution Analysis Overview
+
+This analysis examines the distribution of research fields associated with federated learning publications across {total_count} research papers. Understanding field distribution helps identify interdisciplinary connections, application domains, and the cross-cutting nature of federated learning research.
+
+This data reveals how federated learning intersects with various scientific disciplines and application areas.
 """
-        for idx, field in enumerate(top_fields, 1):
-            text_content += f"{idx}. {field.get('field', '')}: {field.get('count', 0)} occurrences\n"
+        chunks.append(overview_chunk)
+        chunk_ids.append(f"{base_id}_overview")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "overview",
+            "total_fields": len(fields),
+            "paper_count": total_count
+        })
         
-        text_content += f"\nTotal titles analyzed: {result.get('titleCount', 0)}\n"
-        text_content += f"Analysis covers research field classification of federated learning papers.\n"
-        
-    else:
-        # Fallback for unknown analysis types
-        text_content = f"""
-Analysis Type: {analysis_type}
-Workspace ID: {item.get('workspace_id', 'N/A')}
-Result: {json.dumps(result, indent=2)}
+        # Complete fields chunk
+        all_fields_chunk = f"""
+Complete Research Field Distribution Analysis for Federated Learning
+
+The following represents all research fields and their occurrence frequencies in federated learning publications:
+
 """
+        for field in fields:
+            field_name = field.get('field', '')
+            count = field.get('count', 0)
+            all_fields_chunk += f"The research field '{field_name}' appears in {count} federated learning papers, showing the interdisciplinary nature of this research area. "
+            
+        all_fields_chunk += f"\n\nThis field distribution analysis demonstrates the broad applicability and interdisciplinary nature of federated learning research across multiple scientific domains."
+        
+        chunks.append(all_fields_chunk)
+        chunk_ids.append(f"{base_id}_complete")
+        chunk_metadata.append({
+            "analysis_type": analysis_type,
+            "chunk_type": "complete_fields",
+            "total_fields": len(fields),
+            "paper_count": total_count
+        })
     
-    # Don't chunk this data - keep each analysis as a single document
-    documents.append(text_content)
-    ids.append(f"analysis_{analysis_type}_{i}")
-    metadata.append({
-        "source": "federated.json",
-        "doc_id": i,
-        "analysis_type": analysis_type,
-        "workspace_id": item.get('workspace_id', 'unknown'),
-        "result_type": result.get('type', 'unknown'),
-        "total_count": result.get('count', 0) or result.get('titleCount', 0)
-    })
+    return chunks, chunk_ids, chunk_metadata
+
+# Process each analysis item
+for i, item in enumerate(json_data):
+    analysis_type = item.get('analysis_type', 'unknown')
+    result = item.get('result', {})
+    base_id = f"analysis_{analysis_type}_{i}"
+    
+    # Create semantic chunks for this analysis
+    chunks, chunk_ids, chunk_metadata = create_semantic_chunks(analysis_type, result, base_id)
+    
+    # Add chunks to main lists
+    documents.extend(chunks)
+    ids.extend(chunk_ids)
+    
+    # Enrich metadata with common fields
+    for meta_item in chunk_metadata:
+        meta_item.update({
+            "source": "federated.json",
+            "doc_id": i,
+            "workspace_id": item.get('workspace_id', 'unknown'),
+            "result_type": result.get('type', 'unknown'),
+            "created_at": item.get('created_at', {}).get('$date', 'unknown')
+        })
+    
+    metadata.extend(chunk_metadata)
 
 print(f"Prepared {len(documents)} document chunks for insertion into ChromaDB")
 
