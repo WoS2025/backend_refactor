@@ -1,0 +1,2281 @@
+[{
+  "_id": {
+    "$oid": "686e3190ae81904a3d40bc39"
+  },
+  "workspace_id": "200270e4-2982-409f-8424-e3817969ca80",
+  "analysis_type": "keyword_occurence",
+  "result": {
+    "type": "keyword_analysis_occurence",
+    "titleCount": 4000,
+    "results": [
+      {
+        "keyword": "federated learning",
+        "count": 3159
+      },
+      {
+        "keyword": "training",
+        "count": 630
+      },
+      {
+        "keyword": "data models",
+        "count": 562
+      },
+      {
+        "keyword": "servers",
+        "count": 526
+      },
+      {
+        "keyword": "privacy",
+        "count": 367
+      },
+      {
+        "keyword": "computational modeling",
+        "count": 348
+      },
+      {
+        "keyword": "blockchain",
+        "count": 327
+      },
+      {
+        "keyword": "deep learning",
+        "count": 308
+      },
+      {
+        "keyword": "machine learning",
+        "count": 299
+      },
+      {
+        "keyword": "federated learning (fl)",
+        "count": 251
+      },
+      {
+        "keyword": "data privacy",
+        "count": 210
+      },
+      {
+        "keyword": "security",
+        "count": 196
+      },
+      {
+        "keyword": "convergence",
+        "count": 194
+      },
+      {
+        "keyword": "differential privacy",
+        "count": 190
+      },
+      {
+        "keyword": "collaborative work",
+        "count": 180
+      },
+      {
+        "keyword": "internet of things",
+        "count": 173
+      },
+      {
+        "keyword": "edge computing",
+        "count": 172
+      },
+      {
+        "keyword": "federatedlearning",
+        "count": 161
+      },
+      {
+        "keyword": "optimization",
+        "count": 139
+      },
+      {
+        "keyword": "privacy-preserving",
+        "count": 133
+      },
+      {
+        "keyword": "privacy protection",
+        "count": 116
+      },
+      {
+        "keyword": "adaptation models",
+        "count": 113
+      },
+      {
+        "keyword": "task analysis",
+        "count": 108
+      },
+      {
+        "keyword": "data heterogeneity",
+        "count": 97
+      },
+      {
+        "keyword": "distributed learning",
+        "count": 94
+      },
+      {
+        "keyword": "non-iid",
+        "count": 89
+      },
+      {
+        "keyword": "knowledge distillation",
+        "count": 85
+      },
+      {
+        "keyword": "artificial intelligence",
+        "count": 83
+      },
+      {
+        "keyword": "wireless communication",
+        "count": 80
+      },
+      {
+        "keyword": "privacy preservation",
+        "count": 79
+      },
+      {
+        "keyword": "reinforcement learning",
+        "count": 77
+      },
+      {
+        "keyword": "iot",
+        "count": 74
+      },
+      {
+        "keyword": "resource management",
+        "count": 70
+      },
+      {
+        "keyword": "blockchains",
+        "count": 67
+      },
+      {
+        "keyword": "distributed machine learning",
+        "count": 66
+      },
+      {
+        "keyword": "personalized federated learning",
+        "count": 66
+      },
+      {
+        "keyword": "incentive mechanism",
+        "count": 65
+      },
+      {
+        "keyword": "cloud computing",
+        "count": 61
+      },
+      {
+        "keyword": "resource allocation",
+        "count": 59
+      },
+      {
+        "keyword": "homomorphic encryption",
+        "count": 59
+      },
+      {
+        "keyword": "computationalmodeling",
+        "count": 59
+      },
+      {
+        "keyword": "distributed databases",
+        "count": 59
+      },
+      {
+        "keyword": "predictive models",
+        "count": 57
+      },
+      {
+        "keyword": "costs",
+        "count": 57
+      },
+      {
+        "keyword": "transfer learning",
+        "count": 57
+      },
+      {
+        "keyword": "performance evaluation",
+        "count": 56
+      },
+      {
+        "keyword": "vertical federated learning",
+        "count": 54
+      },
+      {
+        "keyword": "contrastive learning",
+        "count": 54
+      },
+      {
+        "keyword": "communication efficiency",
+        "count": 54
+      },
+      {
+        "keyword": "secure aggregation",
+        "count": 53
+      },
+      {
+        "keyword": "client selection",
+        "count": 52
+      },
+      {
+        "keyword": "clustering",
+        "count": 52
+      },
+      {
+        "keyword": "training data",
+        "count": 51
+      },
+      {
+        "keyword": "decentralized federated learning",
+        "count": 49
+      },
+      {
+        "keyword": "fault diagnosis",
+        "count": 47
+      },
+      {
+        "keyword": "personalization",
+        "count": 47
+      },
+      {
+        "keyword": "robustness",
+        "count": 47
+      },
+      {
+        "keyword": "privacy preserving",
+        "count": 46
+      },
+      {
+        "keyword": "wireless networks",
+        "count": 46
+      },
+      {
+        "keyword": "non-iid data",
+        "count": 46
+      },
+      {
+        "keyword": "feature extraction",
+        "count": 45
+      },
+      {
+        "keyword": "semi-supervised learning",
+        "count": 45
+      },
+      {
+        "keyword": "fairness",
+        "count": 44
+      },
+      {
+        "keyword": "meta-learning",
+        "count": 44
+      },
+      {
+        "keyword": "federatedlearning (fl)",
+        "count": 42
+      },
+      {
+        "keyword": "poisoning attack",
+        "count": 41
+      },
+      {
+        "keyword": "anomaly detection",
+        "count": 41
+      },
+      {
+        "keyword": "healthcare",
+        "count": 41
+      },
+      {
+        "keyword": "neural networks",
+        "count": 40
+      },
+      {
+        "keyword": "internet of things (iot)",
+        "count": 38
+      },
+      {
+        "keyword": "asynchronous federated learning",
+        "count": 38
+      },
+      {
+        "keyword": "protocols",
+        "count": 37
+      },
+      {
+        "keyword": "accuracy",
+        "count": 36
+      },
+      {
+        "keyword": "covid-19",
+        "count": 36
+      },
+      {
+        "keyword": "ensemble learning",
+        "count": 36
+      },
+      {
+        "keyword": "collaboration",
+        "count": 35
+      },
+      {
+        "keyword": "smart contract",
+        "count": 34
+      },
+      {
+        "keyword": "machinelearning",
+        "count": 34
+      },
+      {
+        "keyword": "datamodels",
+        "count": 34
+      },
+      {
+        "keyword": "deep reinforcement learning",
+        "count": 34
+      },
+      {
+        "keyword": "industrial internet of things",
+        "count": 33
+      },
+      {
+        "keyword": "cryptography",
+        "count": 33
+      },
+      {
+        "keyword": "mobile edge computing",
+        "count": 32
+      },
+      {
+        "keyword": "heterogeneous data",
+        "count": 31
+      },
+      {
+        "keyword": "efficiency",
+        "count": 30
+      },
+      {
+        "keyword": "game theory",
+        "count": 29
+      },
+      {
+        "keyword": "over-the-air computation",
+        "count": 29
+      },
+      {
+        "keyword": "survey",
+        "count": 29
+      },
+      {
+        "keyword": "energy consumption",
+        "count": 28
+      },
+      {
+        "keyword": "intrusion detection",
+        "count": 28
+      },
+      {
+        "keyword": "poisoning attacks",
+        "count": 28
+      },
+      {
+        "keyword": "distributed optimization",
+        "count": 28
+      },
+      {
+        "keyword": "representation learning",
+        "count": 28
+      },
+      {
+        "keyword": "differentialprivacy",
+        "count": 27
+      },
+      {
+        "keyword": "smart contracts",
+        "count": 27
+      },
+      {
+        "keyword": "delays",
+        "count": 27
+      },
+      {
+        "keyword": "privacyprotection",
+        "count": 27
+      },
+      {
+        "keyword": "model aggregation",
+        "count": 27
+      },
+      {
+        "keyword": "medical services",
+        "count": 25
+      },
+      {
+        "keyword": "heterogeneity",
+        "count": 25
+      }
+    ]
+  },
+  "created_at": {
+    "$date": "2025-07-09T17:08:32.142Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "686e3194ae81904a3d40bc3a"
+  },
+  "workspace_id": "200270e4-2982-409f-8424-e3817969ca80",
+  "analysis_type": "author_year",
+  "result": {
+    "type": "author_analysis",
+    "count": 4000,
+    "conditionCount": 4000,
+    "results": [
+      {
+        "author": "Yang, Qiang",
+        "count": 35
+      },
+      {
+        "author": "Liu, Yang",
+        "count": 31
+      },
+      {
+        "author": "Yu, Shui",
+        "count": 30
+      },
+      {
+        "author": "Han, Zhu",
+        "count": 28
+      },
+      {
+        "author": "Liu, Ximeng",
+        "count": 27
+      },
+      {
+        "author": "Zheng, Zibin",
+        "count": 25
+      },
+      {
+        "author": "Guizani, Mohsen",
+        "count": 24
+      },
+      {
+        "author": "Jin, Yaochu",
+        "count": 23
+      },
+      {
+        "author": "Guo, Song",
+        "count": 23
+      },
+      {
+        "author": "Niyato, Dusit",
+        "count": 22
+      },
+      {
+        "author": "Zhang, Weishan",
+        "count": 22
+      },
+      {
+        "author": "Zhu, Tianqing",
+        "count": 22
+      },
+      {
+        "author": "Poor, H. Vincent",
+        "count": 21
+      },
+      {
+        "author": "Choo, Kim-Kwang Raymond",
+        "count": 21
+      },
+      {
+        "author": "Yu, Han",
+        "count": 20
+      },
+      {
+        "author": "Zhang, Wei",
+        "count": 20
+      },
+      {
+        "author": "Liu, Yuan",
+        "count": 19
+      },
+      {
+        "author": "Xu, Yang",
+        "count": 19
+      },
+      {
+        "author": "Chen, Chuan",
+        "count": 19
+      },
+      {
+        "author": "Srivastava, Gautam",
+        "count": 18
+      },
+      {
+        "author": "Bennis, Mehdi",
+        "count": 18
+      },
+      {
+        "author": "Liu, Ji",
+        "count": 18
+      },
+      {
+        "author": "Lu, Qinghua",
+        "count": 18
+      },
+      {
+        "author": "Li, Peng",
+        "count": 18
+      },
+      {
+        "author": "Tran, Nguyen H.",
+        "count": 17
+      },
+      {
+        "author": "Hong, Choong Seon",
+        "count": 16
+      },
+      {
+        "author": "Brinton, Christopher G.",
+        "count": 16
+      },
+      {
+        "author": "Lyu, Lingjuan",
+        "count": 16
+      },
+      {
+        "author": "Zhou, Wanlei",
+        "count": 16
+      },
+      {
+        "author": "Xu, Hongli",
+        "count": 16
+      },
+      {
+        "author": "Hu, Kai",
+        "count": 16
+      },
+      {
+        "author": "Ding, Ming",
+        "count": 15
+      },
+      {
+        "author": "Wu, Di",
+        "count": 15
+      },
+      {
+        "author": "Hosseinalipour, Seyyedali",
+        "count": 15
+      },
+      {
+        "author": "Hossain, M. Shamim",
+        "count": 15
+      },
+      {
+        "author": "Sun, Lichao",
+        "count": 15
+      },
+      {
+        "author": "Kang, Yan",
+        "count": 15
+      },
+      {
+        "author": "Wang, Xiao",
+        "count": 15
+      },
+      {
+        "author": "Zhang, Yan",
+        "count": 14
+      },
+      {
+        "author": "Li, Hongwei",
+        "count": 14
+      },
+      {
+        "author": "Xu, Guowen",
+        "count": 14
+      },
+      {
+        "author": "Chen, Li",
+        "count": 14
+      },
+      {
+        "author": "Yang, Lei",
+        "count": 14
+      },
+      {
+        "author": "Quek, Tony Q. S.",
+        "count": 14
+      },
+      {
+        "author": "Wang, Rui",
+        "count": 14
+      },
+      {
+        "author": "Deng, Robert H.",
+        "count": 14
+      },
+      {
+        "author": "Li, Jun",
+        "count": 13
+      },
+      {
+        "author": "Zhang, Jie",
+        "count": 13
+      },
+      {
+        "author": "Wang, Wei",
+        "count": 13
+      },
+      {
+        "author": "Yu, Wei",
+        "count": 13
+      },
+      {
+        "author": "Zhu, Hangyu",
+        "count": 13
+      },
+      {
+        "author": "Jiang, Shanshan",
+        "count": 13
+      },
+      {
+        "author": "Lau, Vincent K. N.",
+        "count": 13
+      },
+      {
+        "author": "Liu, Xin",
+        "count": 13
+      },
+      {
+        "author": "Xie, Yu",
+        "count": 13
+      },
+      {
+        "author": "Zhang, Yi",
+        "count": 13
+      },
+      {
+        "author": "Ning, Huansheng",
+        "count": 13
+      },
+      {
+        "author": "Zhu, Liehuang",
+        "count": 12
+      },
+      {
+        "author": "Kang, Jiawen",
+        "count": 12
+      },
+      {
+        "author": "Wu, Jun",
+        "count": 12
+      },
+      {
+        "author": "Zhao, Jun",
+        "count": 12
+      },
+      {
+        "author": "Wang, Yu",
+        "count": 12
+      },
+      {
+        "author": "Liu, Yi",
+        "count": 12
+      },
+      {
+        "author": "Li, Baochun",
+        "count": 12
+      },
+      {
+        "author": "Wang, Zhe",
+        "count": 12
+      },
+      {
+        "author": "Zhang, Chen",
+        "count": 12
+      },
+      {
+        "author": "Yu, Bin",
+        "count": 12
+      },
+      {
+        "author": "Dou, Dejing",
+        "count": 12
+      },
+      {
+        "author": "Li, Li",
+        "count": 12
+      },
+      {
+        "author": "Sattler, Felix",
+        "count": 12
+      },
+      {
+        "author": "Samek, Wojciech",
+        "count": 12
+      },
+      {
+        "author": "Zeng, Xingjie",
+        "count": 12
+      },
+      {
+        "author": "Wang, Fei-Yue",
+        "count": 12
+      },
+      {
+        "author": "Yu, Dongxiao",
+        "count": 12
+      },
+      {
+        "author": "Cheng, Xiuzhen",
+        "count": 12
+      },
+      {
+        "author": "Ma, Zezhong",
+        "count": 12
+      },
+      {
+        "author": "Zhang, Yupei",
+        "count": 12
+      },
+      {
+        "author": "Wang, Yifei",
+        "count": 12
+      },
+      {
+        "author": "Li, Yuxin",
+        "count": 12
+      },
+      {
+        "author": "Xu, Yunan",
+        "count": 12
+      },
+      {
+        "author": "Wei, Shuangshuang",
+        "count": 12
+      },
+      {
+        "author": "Shang, Xuequn",
+        "count": 12
+      },
+      {
+        "author": "You, Linlin",
+        "count": 12
+      },
+      {
+        "author": "Chen, Yunfei",
+        "count": 12
+      },
+      {
+        "author": "Nguyen, Minh N. H.",
+        "count": 11
+      },
+      {
+        "author": "Peng, Changgen",
+        "count": 11
+      },
+      {
+        "author": "Wang, Hao",
+        "count": 11
+      },
+      {
+        "author": "Jiang, Chunxiao",
+        "count": 11
+      },
+      {
+        "author": "Parizi, Reza M.",
+        "count": 11
+      },
+      {
+        "author": "Rodriguez-Barroso, Nuria",
+        "count": 11
+      },
+      {
+        "author": "Herrera, Francisco",
+        "count": 11
+      },
+      {
+        "author": "Zhang, Weizhe",
+        "count": 11
+      },
+      {
+        "author": "Qu, Youyang",
+        "count": 11
+      },
+      {
+        "author": "Zhang, Yu",
+        "count": 11
+      },
+      {
+        "author": "Zhang, Peiying",
+        "count": 11
+      },
+      {
+        "author": "Jin, Hai",
+        "count": 11
+      },
+      {
+        "author": "Ge, Chunpeng",
+        "count": 11
+      },
+      {
+        "author": "Zhang, Yong",
+        "count": 11
+      },
+      {
+        "author": "Susilo, Willy",
+        "count": 10
+      },
+      {
+        "author": "Zhou, Yipeng",
+        "count": 10
+      }
+    ]
+  },
+  "created_at": {
+    "$date": "2025-07-09T17:08:36.866Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "686e3199ae81904a3d40bc3b"
+  },
+  "workspace_id": "200270e4-2982-409f-8424-e3817969ca80",
+  "analysis_type": "reference",
+  "result": {
+    "type": "reference_analysis",
+    "count": 4000,
+    "results": [
+      {
+        "title": "Federated Machine Learning: Concept and Applications",
+        "author": [
+          "Yang, Qiang",
+          "Liu, Yang",
+          "Chen, Tianjian",
+          "Tong, Yongxin"
+        ],
+        "count": 16356
+      },
+      {
+        "title": "Robust and Communication-Efficient Federated Learning From Non-i.i.d.Data",
+        "author": [
+          "Sattler, Felix",
+          "Wiedemann, Simon",
+          "Mueller, Klaus-Robert",
+          "Samek, Wojciech"
+        ],
+        "count": 3090
+      },
+      {
+        "title": "A survey on security and privacy of federated learning",
+        "author": [
+          "Mothukuri, Viraaji",
+          "Parizi, Reza M.",
+          "Pouriyeh, Seyedamin",
+          "Huang, Yan",
+          "Dehghantanha, Ali",
+          "Srivastava, Gautam"
+        ],
+        "count": 1968
+      },
+      {
+        "title": "A survey on federated learning",
+        "author": [
+          "Zhang, Chen",
+          "Xie, Yu",
+          "Bai, Hang",
+          "Yu, Bin",
+          "Li, Weihong",
+          "Gao, Yuan"
+        ],
+        "count": 1959
+      },
+      {
+        "title": "Clustered Federated Learning: Model-Agnostic Distributed MultitaskOptimization Under Privacy Constraints",
+        "author": [
+          "Sattler, Felix",
+          "Mueller, Klaus-Robert",
+          "Samek, Wojciech"
+        ],
+        "count": 1704
+      },
+      {
+        "title": "A review of applications in federated learning",
+        "author": [
+          "Li, Li",
+          "Fan, Yuxi",
+          "Tse, Mike",
+          "Lin, Kuo-Yi"
+        ],
+        "count": 1629
+      },
+      {
+        "title": "Blockchained On-Device Federated Learning",
+        "author": [
+          "Kim, Hyesung",
+          "Park, Jihong",
+          "Bennis, Mehdi",
+          "Kim, Seong-Lyun"
+        ],
+        "count": 1515
+      },
+      {
+        "title": "VerifyNet: Secure and Verifiable Federated Learning",
+        "author": [
+          "Xu, Guowen",
+          "Li, Hongwei",
+          "Liu, Sen",
+          "Yang, Kan",
+          "Lin, Xiaodong"
+        ],
+        "count": 1404
+      },
+      {
+        "title": "A Survey on Federated Learning Systems: Vision, Hype and Reality forData Privacy and Protection",
+        "author": [
+          "Li, Qinbin",
+          "Wen, Zeyi",
+          "Wu, Zhaomin",
+          "Hu, Sixu",
+          "Wang, Naibo",
+          "Li, Yuan",
+          "Liu, Xu",
+          "He, Bingsheng"
+        ],
+        "count": 1305
+      },
+      {
+        "title": "A Learning-Based Incentive Mechanism for Federated Learning",
+        "author": [
+          "Zhan, Yufeng",
+          "Li, Peng",
+          "Qu, Zhihao",
+          "Zeng, Deze",
+          "Guo, Song"
+        ],
+        "count": 1173
+      },
+      {
+        "title": "Federated Learning for Internet of Things: Recent Advances, Taxonomy,and Open Challenges",
+        "author": [
+          "Khan, Latif U.",
+          "Saad, Walid",
+          "Han, Zhu",
+          "Hossain, Ekram",
+          "Hong, Choong Seon"
+        ],
+        "count": 1080
+      },
+      {
+        "title": "Federated learning on non-IID data: A survey",
+        "author": [
+          "Zhu, Hangyu",
+          "Xu, Jinjin",
+          "Liu, Shiqing",
+          "Jin, Yaochu"
+        ],
+        "count": 1071
+      },
+      {
+        "title": "An Efficient Framework for Clustered Federated Learning",
+        "author": [
+          "Ghosh, Avishek",
+          "Chung, Jichan",
+          "Yin, Dong",
+          "Ramchandran, Kannan"
+        ],
+        "count": 1026
+      },
+      {
+        "title": "The future of digital health with federated learning",
+        "author": [
+          "Rieke, Nicola",
+          "Hancox, Jonny",
+          "Li, Wenqi",
+          "Milletari, Fausto",
+          "Roth, Holger R.",
+          "Albarqouni, Shadi",
+          "Bakas, Spyridon",
+          "Galtier, Mathieu N.",
+          "Landman, Bennett A.",
+          "Maier-Hein, Klaus",
+          "Ourselin, Sebastien",
+          "Sheller, Micah",
+          "Summers, Ronald M.",
+          "Trask, Andrew",
+          "Xu, Daguang",
+          "Baust, Maximilian",
+          "Cardoso, M. Jorge"
+        ],
+        "count": 1025
+      },
+      {
+        "title": "Federated Learning for Smart Healthcare: A Survey",
+        "author": [
+          "Dinh C Nguyen",
+          "Quoc-Viet Pham",
+          "Pathirana, Pubudu N.",
+          "Ding, Ming",
+          "Seneviratne, Aruna",
+          "Lin, Zihuai",
+          "Dobre, Octavia",
+          "Hwang, Won-Joo"
+        ],
+        "count": 831
+      },
+      {
+        "title": "A Comprehensive Survey of Privacy-preserving Federated Learning: ATaxonomy, Review, and Future Directions",
+        "author": [
+          "Yin, Xuefei",
+          "Zhu, Yanming",
+          "Hu, Jiankun"
+        ],
+        "count": 804
+      },
+      {
+        "title": "Federated Learning for 6G Communications: Challenges, Methods, andFuture Directions",
+        "author": [
+          "Liu, Yi",
+          "Yuan, Xingliang",
+          "Xiong, Zehui",
+          "Kang, Jiawen",
+          "Wang, Xiaofei",
+          "Niyato, Dusit"
+        ],
+        "count": 780
+      },
+      {
+        "title": "Accelerating Federated Learning via Momentum Gradient Descent",
+        "author": [
+          "Liu, Wei",
+          "Chen, Li",
+          "Chen, Yunfei",
+          "Zhang, Wenyi"
+        ],
+        "count": 729
+      },
+      {
+        "title": "Federated Learning in Vehicular Edge Computing: A Selective ModelAggregation Approach",
+        "author": [
+          "Ye, Dongdong",
+          "Yu, Rong",
+          "Pan, Miao",
+          "Han, Zhu"
+        ],
+        "count": 708
+      },
+      {
+        "title": "SecureBoost: A Lossless Federated Learning Framework",
+        "author": [
+          "Cheng, Kewei",
+          "Fan, Tao",
+          "Jin, Yilun",
+          "Liu, Yang",
+          "Chen, Tianjian",
+          "Papadopoulos, Dimitrios",
+          "Yang, Qiang"
+        ],
+        "count": 681
+      },
+      {
+        "title": "Blockchain-Federated-Learning and Deep Learning Models for COVID-19Detection Using CT Imaging",
+        "author": [
+          "Kumar, Rajesh",
+          "Khan, Abdullah Aman",
+          "Kumar, Jay",
+          "Zakria",
+          "Golilarz, Noorbakhsh Amiri",
+          "Zhang, Simin",
+          "Ting, Yang",
+          "Zheng, Chengyu",
+          "Wang, Wenyong"
+        ],
+        "count": 660
+      },
+      {
+        "title": "Robust Aggregation for Federated Learning",
+        "author": [
+          "Pillutla, Krishna",
+          "Kakade, Sham M.",
+          "Harchaoui, Zaid"
+        ],
+        "count": 645
+      },
+      {
+        "title": "Privacy-preserving blockchain-based federated learning for traffic flowprediction",
+        "author": [
+          "Qi, Yuanhang",
+          "Hossain, M. Shamim",
+          "Nie, Jiangtian",
+          "Li, Xuandi"
+        ],
+        "count": 588
+      },
+      {
+        "title": "Recent Advances on Federated Learning for Cybersecurity andCybersecurity for Federated Learning for Internet of Things",
+        "author": [
+          "Ghimire, Bimal",
+          "Rawat, Danda B."
+        ],
+        "count": 570
+      },
+      {
+        "title": "Multi-Objective Evolutionary Federated Learning",
+        "author": [
+          "Zhu, Hangyu",
+          "Jin, Yaochu"
+        ],
+        "count": 570
+      },
+      {
+        "title": "A Survey of Incentive Mechanism Design for Federated Learning",
+        "author": [
+          "Zhan, Yufeng",
+          "Zhang, Jie",
+          "Hong, Zicong",
+          "Wu, Leijie",
+          "Li, Peng",
+          "Guo, Song"
+        ],
+        "count": 519
+      },
+      {
+        "title": "Chained Anomaly Detection Models for Federated Learning: An IntrusionDetection Case Study",
+        "author": [
+          "Preuveneers, Davy",
+          "Rimmer, Vera",
+          "Tsingenopoulos, Ilias",
+          "Spooren, Jan",
+          "Joosen, Wouter",
+          "Ilie-Zudor, Elisabeth"
+        ],
+        "count": 510
+      },
+      {
+        "title": "FedHealth: A Federated Transfer Learning Framework for WearableHealthcare",
+        "author": [
+          "Chen, Yiqiang",
+          "Qin, Xin",
+          "Wang, Jindong",
+          "Yu, Chaohui",
+          "Gao, Wen"
+        ],
+        "count": 495
+      },
+      {
+        "title": "Communication-efficient federated learning",
+        "author": [
+          "Chen, Mingzhe",
+          "Shlezinger, Nir",
+          "Poor, H. Vincent",
+          "Eldar, Yonina C.",
+          "Cui, Shuguang"
+        ],
+        "count": 477
+      },
+      {
+        "title": "Learning in the Air: Secure Federated Learning for UAV-AssistedCrowdsensing",
+        "author": [
+          "Wang, Yuntao",
+          "Su, Zhou",
+          "Zhang, Ning",
+          "Benslimane, Abderrahim"
+        ],
+        "count": 468
+      },
+      {
+        "title": "Fast-Convergent Federated Learning",
+        "author": [
+          "Nguyen, Hung T.",
+          "Sehwag, Vikash",
+          "Hosseinalipour, Seyyedali",
+          "Brinton, Christopher G.",
+          "Chiang, Mung",
+          "Poor, H. Vincent"
+        ],
+        "count": 453
+      },
+      {
+        "title": "Privacy-Preserving Federated Learning in Fog Computing",
+        "author": [
+          "Zhou, Chunyi",
+          "Fu, Anmin",
+          "Yu, Shui",
+          "Yang, Wei",
+          "Wang, Huaqun",
+          "Zhang, Yuqing"
+        ],
+        "count": 450
+      },
+      {
+        "title": "Federated Learning in Smart City Sensing: Challenges and Opportunities",
+        "author": [
+          "Jiang, Ji Chu",
+          "Kantarci, Burak",
+          "Oktug, Sema",
+          "Soyata, Tolga"
+        ],
+        "count": 444
+      },
+      {
+        "title": "Federated Learning for Wireless Communications: Motivation,Opportunities, and Challenges",
+        "author": [
+          "Niknam, Solmaz",
+          "Dhillon, Harpreet S.",
+          "Reed, Jeffrey H."
+        ],
+        "count": 433
+      },
+      {
+        "title": "Privacy-preserving federated learning based on multi-key homomorphicencryption",
+        "author": [
+          "Ma, Jing",
+          "Naas, Si-Ahmed",
+          "Sigg, Stephan",
+          "Lyu, Xixiang"
+        ],
+        "count": 423
+      },
+      {
+        "title": "Federated learning for malware detection in IoT devices",
+        "author": [
+          "Rey, Valerian",
+          "Sanchez Sanchez, Pedro Miguel",
+          "Huertas Celdran, Alberto",
+          "Bovet, Gerome"
+        ],
+        "count": 405
+      },
+      {
+        "title": "Ternary Compression for Communication-Efficient Federated Learning",
+        "author": [
+          "Xu, Jinjin",
+          "Du, Wenli",
+          "Jin, Yaochu",
+          "He, Wangli",
+          "Cheng, Ran"
+        ],
+        "count": 375
+      },
+      {
+        "title": "From distributed machine learning to federated learning: a survey",
+        "author": [
+          "Liu, Ji",
+          "Huang, Jizhou",
+          "Zhou, Yang",
+          "Li, Xuhong",
+          "Ji, Shilei",
+          "Xiong, Haoyi",
+          "Dou, Dejing"
+        ],
+        "count": 375
+      },
+      {
+        "title": "Privacy and Robustness in Federated Learning: Attacks and Defenses",
+        "author": [
+          "Lyu, Lingjuan",
+          "Yu, Han",
+          "Ma, Xingjun",
+          "Chen, Chen",
+          "Sun, Lichao",
+          "Zhao, Jun",
+          "Yang, Qiang",
+          "Yu, Philip S."
+        ],
+        "count": 369
+      },
+      {
+        "title": "A Survey on Federated Learning: The Journey From Centralized toDistributed On-Site Learning and Beyond",
+        "author": [
+          "AbdulRahman, Sawsan",
+          "Tout, Hanine",
+          "Ould-Slimane, Hakima",
+          "Mourad, Azzam",
+          "Talhi, Chamseddine",
+          "Guizani, Mohsen"
+        ],
+        "count": 361
+      },
+      {
+        "title": "Federated Learning: A Survey on Enabling Technologies, Protocols, andApplications",
+        "author": [
+          "Aledhari, Mohammed",
+          "Razzak, Rehma",
+          "Parizi, Reza M.",
+          "Saeed, Fahad"
+        ],
+        "count": 342
+      },
+      {
+        "title": "EdgeFed: Optimized Federated Learning Based on Edge Computing",
+        "author": [
+          "Ye, Yunfan",
+          "Li, Shen",
+          "Liu, Fang",
+          "Tang, Yonghao",
+          "Hu, Wanting"
+        ],
+        "count": 342
+      },
+      {
+        "title": "Blockchain for federated learning toward secure distributed machinelearning systems: a systemic survey",
+        "author": [
+          "Li, Dun",
+          "Han, Dezhi",
+          "Weng, Tien-Hsiung",
+          "Zheng, Zibin",
+          "Li, Hongzhi",
+          "Liu, Han",
+          "Castiglione, Arcangelo",
+          "Li, Kuan-Ching"
+        ],
+        "count": 333
+      },
+      {
+        "title": "Federated learning improves site performance in multicenter deeplearning without data sharing",
+        "author": [
+          "Sarma, Karthik, V",
+          "Harmon, Stephanie",
+          "Sanford, Thomas",
+          "Roth, Holger R.",
+          "Xu, Ziyue",
+          "Tetreault, Jesse",
+          "Xu, Daguang",
+          "Flores, Mona G.",
+          "Raman, Alex G.",
+          "Kulkarni, Rushikesh",
+          "Wood, Bradford J.",
+          "Choyke, Peter L.",
+          "Priester, Alan M.",
+          "Marks, Leonard S.",
+          "Raman, Steven S.",
+          "Enzmann, Dieter",
+          "Turkbey, Baris",
+          "Speier, William",
+          "Arnold, Corey W."
+        ],
+        "count": 330
+      },
+      {
+        "title": "A Secure Federated Transfer Learning Framework",
+        "author": [
+          "Liu, Yang",
+          "Kang, Yan",
+          "Xing, Chaoping",
+          "Chen, Tianjian",
+          "Yang, Qiang"
+        ],
+        "count": 319
+      },
+      {
+        "title": "Federated Learning Meets Blockchain in Edge Computing: Opportunities andChallenges",
+        "author": [
+          "Nguyen, Dinh C.",
+          "Ding, Ming",
+          "Quoc-Viet Pham",
+          "Pathirana, Pubudu N.",
+          "Le, Long Bao",
+          "Seneviratne, Aruna",
+          "Li, Jun",
+          "Niyato, Dusit",
+          "Poor, H. Vincent"
+        ],
+        "count": 316
+      },
+      {
+        "title": "A Blockchain-Based Decentralized Federated Learning Framework withCommittee Consensus",
+        "author": [
+          "Li, Yuzheng",
+          "Chen, Chuan",
+          "Liu, Nan",
+          "Huang, Huawei",
+          "Zheng, Zibin",
+          "Yan, Qiang"
+        ],
+        "count": 313
+      },
+      {
+        "title": "Federated learning for computational pathology on gigapixel whole slideimages",
+        "author": [
+          "Lu, Ming Y.",
+          "Chen, Richard J.",
+          "Kong, Dehan",
+          "Lipkova, Jana",
+          "Singh, Rajendra",
+          "Williamson, Drew F. K.",
+          "Chen, Tiffany Y.",
+          "Mahmood, Faisal"
+        ],
+        "count": 312
+      },
+      {
+        "title": "Communication-Efficient Federated Learning With CompensatedOverlap-FedAvg",
+        "author": [
+          "Zhou, Yuhao",
+          "Ye, Qing",
+          "Lv, Jiancheng"
+        ],
+        "count": 312
+      },
+      {
+        "title": "Byzantine-Resilient Secure Federated Learning",
+        "author": [
+          "So, Jinhyun",
+          "Guler, Basak",
+          "Avestimehr, A. Salman"
+        ],
+        "count": 309
+      },
+      {
+        "title": "A survey on federated learning: challenges and applications",
+        "author": [
+          "Wen, Jie",
+          "Zhang, Zhixia",
+          "Lan, Yang",
+          "Cui, Zhihua",
+          "Cai, Jianghui",
+          "Zhang, Wensheng"
+        ],
+        "count": 309
+      },
+      {
+        "title": "Privacy-Preserving Byzantine-Robust Federated Learning via BlockchainSystems",
+        "author": [
+          "Miao, Yinbin",
+          "Liu, Ziteng",
+          "Li, Hongwei",
+          "Choo, Kim-Kwang Raymond",
+          "Deng, Robert H."
+        ],
+        "count": 309
+      },
+      {
+        "title": "Data Poisoning Attacks on Federated Machine Learning",
+        "author": [
+          "Sun, Gan",
+          "Cong, Yang",
+          "Dong, Jiahua",
+          "Wang, Qiang",
+          "Lyu, Lingjuan",
+          "Liu, Ji"
+        ],
+        "count": 300
+      },
+      {
+        "title": "Learning Rate Optimization for Federated Learning ExploitingOver-the-Air Computation",
+        "author": [
+          "Xu, Chunmei",
+          "Liu, Shengheng",
+          "Yang, Zhaohui",
+          "Huang, Yongming",
+          "Wong, Kai-Kit"
+        ],
+        "count": 300
+      },
+      {
+        "title": "Federated Learning With Blockchain for Autonomous Vehicles: Analysis andDesign Challenges",
+        "author": [
+          "Pokhrel, Shiva Raj",
+          "Choi, Jinho"
+        ],
+        "count": 299
+      },
+      {
+        "title": "Privacy-Preserving Blockchain-Based Federated Learning for IoT Devices",
+        "author": [
+          "Zhao, Yang",
+          "Zhao, Jun",
+          "Jiang, Linshan",
+          "Tan, Rui",
+          "Niyato, Dusit",
+          "Li, Zengxiang",
+          "Lyu, Lingjuan",
+          "Liu, Yingbo"
+        ],
+        "count": 299
+      },
+      {
+        "title": "Privacy-Preserving Federated Deep Learning With Irregular Users",
+        "author": [
+          "Xu, Guowen",
+          "Li, Hongwei",
+          "Zhang, Yun",
+          "Xu, Shengmin",
+          "Ning, Jianting",
+          "Deng, Robert H."
+        ],
+        "count": 297
+      },
+      {
+        "title": "Survey on federated learning threats: Concepts, taxonomy on attacks anddefences, experimental study and challenges",
+        "author": [
+          "Rodriguez-Barroso, Nuria",
+          "Jimenez-Lopez, Daniel",
+          "Victoria Luzon, M.",
+          "Herrera, Francisco",
+          "Martinez-Camara, Eugenio"
+        ],
+        "count": 297
+      },
+      {
+        "title": "Federated Learning in a Medical Context: A Systematic Literature Review",
+        "author": [
+          "Pfitzner, Bjarne",
+          "Steckhan, Nico",
+          "Arnrich, Bert"
+        ],
+        "count": 294
+      },
+      {
+        "title": "Distributed Federated Learning for Ultra-Reliable Low-Latency VehicularCommunications",
+        "author": [
+          "Samarakoon, Sumudu",
+          "Bennis, Mehdi",
+          "Saad, Walid",
+          "Debbah, Merouane"
+        ],
+        "count": 293
+      },
+      {
+        "title": "From federated learning to federated neural architecture search: asurvey",
+        "author": [
+          "Zhu, Hangyu",
+          "Zhang, Haoyu",
+          "Jin, Yaochu"
+        ],
+        "count": 291
+      },
+      {
+        "title": "Vulnerabilities in Federated Learning",
+        "author": [
+          "Bouacida, Nader",
+          "Mohapatra, Prasant"
+        ],
+        "count": 288
+      },
+      {
+        "title": "Federated Learning for Edge Networks: Resource Optimization andIncentive Mechanism",
+        "author": [
+          "Khan, Latif U.",
+          "Pandey, Shashi Raj",
+          "Tran, Nguyen H.",
+          "Saad, Walid",
+          "Han, Zhu",
+          "Nguyen, Minh N. H.",
+          "Hong, Choong Seon"
+        ],
+        "count": 287
+      },
+      {
+        "title": "An adaptive federated learning scheme with differential privacypreserving",
+        "author": [
+          "Wu, Xiang",
+          "Zhang, Yongting",
+          "Shi, Minyu",
+          "Li, Pei",
+          "Li, Ruirui",
+          "Xiong, Neal N."
+        ],
+        "count": 282
+      },
+      {
+        "title": "A Systematic Literature Review on Federated Machine Learning: From aSoftware Engineering Perspective",
+        "author": [
+          "Lo, Sin Kit",
+          "Lu, Qinghua",
+          "Wang, Chen",
+          "Paik, Hye-Young",
+          "Zhu, Liming"
+        ],
+        "count": 282
+      },
+      {
+        "title": "FedOpt: Towards Communication Efficiency and Privacy Preservation inFederated Learning",
+        "author": [
+          "Asad, Muhammad",
+          "Moustafa, Ahmed",
+          "Ito, Takayuki"
+        ],
+        "count": 282
+      },
+      {
+        "title": "Federated Learning of Electronic Health Records to Improve MortalityPrediction in Hospitalized Patients With COVID-19: Machine LearningApproach",
+        "author": [
+          "Vaid, Akhil",
+          "Jaladanki, Suraj K.",
+          "Xu, Jie",
+          "Teng, Shelly",
+          "Kumar, Arvind",
+          "Lee, Samuel",
+          "Somani, Sulaiman",
+          "Paranjpe, Ishan",
+          "De Freitas, Jessica K.",
+          "Wanyan, Tingyi",
+          "Johnson, Kipp W.",
+          "Bicak, Mesude",
+          "Klang, Eyal",
+          "Kwon, Young Joon",
+          "Costa, Anthony",
+          "Zhao, Shan",
+          "Miotto, Riccardo",
+          "Charney, Alexander W.",
+          "Boettinger, Erwin",
+          "Fayad, Zahi A.",
+          "Nadkarni, Girish N.",
+          "Wang, Fei",
+          "Glicksberg, Benjamin S."
+        ],
+        "count": 276
+      },
+      {
+        "title": "Data privacy preserving federated transfer learning in machinery faultdiagnostics using prior distributions",
+        "author": [
+          "Zhang, Wei",
+          "Li, Xiang"
+        ],
+        "count": 273
+      },
+      {
+        "title": "Privacy-Preserving Asynchronous Vertical Federated Learning Algorithmsfor Multiparty Collaborative Learning",
+        "author": [
+          "Gu, Bin",
+          "Xu, An",
+          "Huo, Zhouyuan",
+          "Deng, Cheng",
+          "Huang, Heng"
+        ],
+        "count": 270
+      },
+      {
+        "title": "Blockchain-enabled Federated Learning: A Survey",
+        "author": [
+          "Qu, Youyang",
+          "Uddin, Md Palash",
+          "Gan, Chenquan",
+          "Xiang, Yong",
+          "Gao, Longxiang",
+          "Yearwood, John"
+        ],
+        "count": 267
+      },
+      {
+        "title": "Robust Federated Learning With Noisy Communication",
+        "author": [
+          "Ang, Fan",
+          "Chen, Li",
+          "Zhao, Nan",
+          "Chen, Yunfei",
+          "Wang, Weidong",
+          "Yu, F. Richard"
+        ],
+        "count": 264
+      },
+      {
+        "title": "FELIDS: Federated learning-based intrusion detection system for Internetof",
+        "author": [
+          "Friha, Othmane",
+          "Ferrag, Mohamed Amine",
+          "Shu, Lei",
+          "Maglaras, Leandros",
+          "Choo, Kim-Kwang Raymond",
+          "Nafaa, Mehdi"
+        ],
+        "count": 261
+      },
+      {
+        "title": "Federated Deep Reinforcement Learning for Internet of Things WithDecentralized Cooperative Edge Caching",
+        "author": [
+          "Wang, Xiaofei",
+          "Wang, Chenyang",
+          "Li, Xiuhua",
+          "Leung, Victor C. M.",
+          "Taleb, Tarik"
+        ],
+        "count": 260
+      },
+      {
+        "title": "Federated Learning With Cooperating Devices: A Consensus Approach forMassive IoT Networks",
+        "author": [
+          "Savazzi, Stefano",
+          "Nicoli, Monica",
+          "Rampa, Vittorio"
+        ],
+        "count": 255
+      },
+      {
+        "title": "Edge-IIoTset: A New Comprehensive Realistic Cyber Security Dataset ofIoT and IIoT Applications for Centralized and Federated Learning",
+        "author": [
+          "Ferrag, Mohamed Amine",
+          "Friha, Othmane",
+          "Hamouda, Djallel",
+          "Maglaras, Leandros",
+          "Janicke, Helge"
+        ],
+        "count": 252
+      },
+      {
+        "title": "Blockchain-empowered Federated Learning: Challenges, Solutions, andFuture Directions",
+        "author": [
+          "Zhu, Juncen",
+          "Cao, Jiannong",
+          "Saxena, Divya",
+          "Jiang, Shan",
+          "Ferradi, Houda"
+        ],
+        "count": 252
+      },
+      {
+        "title": "Fast-Convergent Federated Learning With Adaptive Weighting",
+        "author": [
+          "Wu, Hongda",
+          "Wang, Ping"
+        ],
+        "count": 246
+      },
+      {
+        "title": "BAFL: A Blockchain-Based Asynchronous Federated Learning Framework",
+        "author": [
+          "Feng, Lei",
+          "Zhao, Yiqi",
+          "Guo, Shaoyong",
+          "Qiu, Xuesong",
+          "Li, Wenjing",
+          "Yu, Peng"
+        ],
+        "count": 246
+      },
+      {
+        "title": "Heterogeneous Federated Learning: State-of-the-art and ResearchChallenges",
+        "author": [
+          "Ye, Mang",
+          "Fang, Xiuwen",
+          "Du, Bo",
+          "Yuen, Pong C.",
+          "Tao, Dacheng"
+        ],
+        "count": 234
+      },
+      {
+        "title": "Convergence Time Optimization for Federated Learning Over WirelessNetworks",
+        "author": [
+          "Chen, Mingzhe",
+          "Poor, H. Vincent",
+          "Saad, Walid",
+          "Cui, Shuguang"
+        ],
+        "count": 220
+      },
+      {
+        "title": "Federated Transfer Learning for Bearing Fault Diagnosis WithDiscrepancy-Based Weighted Federated Averaging",
+        "author": [
+          "Chen, Junbin",
+          "Li, Jipu",
+          "Huang, Ruyi",
+          "Yue, Ke",
+          "Chen, Zhuyun",
+          "Li, Weihua"
+        ],
+        "count": 213
+      },
+      {
+        "title": "Decentralized learning works: An empirical comparison of gossip learningand federated learning",
+        "author": [
+          "Hegedus, Istvan",
+          "Danner, Gabor",
+          "Jelasity, Mark"
+        ],
+        "count": 210
+      },
+      {
+        "title": "Federated Learning and Differential Privacy: Software tools analysis,the Sherpa.ai FL framework and methodological guidelines for preservingdata privacy",
+        "author": [
+          "Rodriguez-Barroso, Nuria",
+          "Stipcich, Goran",
+          "Jimenez-Lopez, Daniel",
+          "Antonio Ruiz-Millan, Jose",
+          "Martinez-Camara, Eugenio",
+          "Gonzalez-Seco, Gerardo",
+          "Victoria Luzon, M.",
+          "Veganzones, Miguel Angel",
+          "Herrera, Francisco"
+        ],
+        "count": 210
+      },
+      {
+        "title": "EaSTFLy: Efficient and secure ternary federated learning",
+        "author": [
+          "Dong, Ye",
+          "Chen, Xiaojun",
+          "Shen, Liyan",
+          "Wang, Dakui"
+        ],
+        "count": 201
+      },
+      {
+        "title": "Privacy-Preserving Federated Learning Using Homomorphic Encryption",
+        "author": [
+          "Park, Jaehyoung",
+          "Lim, Hyuk"
+        ],
+        "count": 201
+      },
+      {
+        "title": "Aggregation Service for Federated Learning: An Efficient, Secure, andMore Resilient Realization",
+        "author": [
+          "Zheng, Yifeng",
+          "Lai, Shangqi",
+          "Liu, Yi",
+          "Yuan, Xingliang",
+          "Yi, Xun",
+          "Wang, Cong"
+        ],
+        "count": 198
+      },
+      {
+        "title": "Towards asynchronous federated learning for heterogeneous edge-poweredinternet of things",
+        "author": [
+          "Chen, Zheyi",
+          "Liao, Weixian",
+          "Hua, Kun",
+          "Lu, Chao",
+          "Yu, Wei"
+        ],
+        "count": 192
+      },
+      {
+        "title": "Semi-Decentralized Federated Learning With Cooperative D2D Local ModelAggregations",
+        "author": [
+          "Lin, Frank Po-Chen",
+          "Hosseinalipour, Seyyedali",
+          "Azam, Sheikh Shams",
+          "Brinton, Christopher G.",
+          "Michelusi, Nicolo"
+        ],
+        "count": 192
+      },
+      {
+        "title": "Multi-Armed Bandit-Based Client Scheduling for Federated Learning",
+        "author": [
+          "Xia, Wenchao",
+          "Quek, Tony Q. S.",
+          "Guo, Kun",
+          "Wen, Wanli",
+          "Yang, Howard H.",
+          "Zhu, Hongbo"
+        ],
+        "count": 190
+      },
+      {
+        "title": "Challenges and future directions of secure federated learning: a survey",
+        "author": [
+          "Zhang, Kaiyue",
+          "Song, Xuan",
+          "Zhang, Chenhan",
+          "Yu, Shui"
+        ],
+        "count": 189
+      },
+      {
+        "title": "Fairness and accuracy in horizontal federated learning",
+        "author": [
+          "Huang, Wei",
+          "Li, Tianrui",
+          "Wang, Dexian",
+          "Du, Shengdong",
+          "Zhang, Junbo",
+          "Huang, Tianqiang"
+        ],
+        "count": 189
+      },
+      {
+        "title": "FedProc: Prototypical contrastive federated learning on non-IID data",
+        "author": [
+          "Mu, Xutong",
+          "Shen, Yulong",
+          "Cheng, Ke",
+          "Geng, Xueli",
+          "Fu, Jiaxuan",
+          "Zhang, Tao",
+          "Zhang, Zhiwei"
+        ],
+        "count": 180
+      },
+      {
+        "title": "Flexible Clustered Federated Learning for Client-Level Data DistributionShift",
+        "author": [
+          "Duan, Moming",
+          "Liu, Duo",
+          "Ji, Xinyuan",
+          "Wu, Yu",
+          "Liang, Liang",
+          "Chen, Xianzhang",
+          "Tan, Yujuan",
+          "Ren, Ao"
+        ],
+        "count": 177
+      },
+      {
+        "title": "Augmented Multi-Party Computation Against Gradient Leakage in FederatedLearning",
+        "author": [
+          "Zhang, Chi",
+          "Ekanut, Sotthiwat",
+          "Zhen, Liangli",
+          "Li, Zengxiang"
+        ],
+        "count": 174
+      },
+      {
+        "title": "Computation Offloading for Edge-Assisted Federated Learning",
+        "author": [
+          "Ji, Zhongming",
+          "Chen, Li",
+          "Zhao, Nan",
+          "Chen, Yunfei",
+          "Wei, Guo",
+          "Yu, F. Richard"
+        ],
+        "count": 174
+      },
+      {
+        "title": "FedMCCS: Multicriteria Client Selection Model for Optimal IoT FederatedLearning",
+        "author": [
+          "AbdulRahman, Sawsan",
+          "Tout, Hanine",
+          "Mourad, Azzam",
+          "Talhi, Chamseddine"
+        ],
+        "count": 172
+      },
+      {
+        "title": "Privacy preserving distributed machine learning with federated learning",
+        "author": [
+          "Chamikara, M. A. P.",
+          "Bertok, P.",
+          "Khalil, I.",
+          "Liu, D.",
+          "Camtepe, S."
+        ],
+        "count": 168
+      },
+      {
+        "title": "Two-Layer Federated Learning With Heterogeneous Model Aggregation for 6GSupported Internet of Vehicles",
+        "author": [
+          "Zhou, Xiaokang",
+          "Liang, Wei",
+          "She, Jinhua",
+          "Yan, Zheng",
+          "Wang, Kevin"
+        ],
+        "count": 165
+      },
+      {
+        "title": "FEDAUX: Leveraging Unlabeled Auxiliary Data in Federated Learning",
+        "author": [
+          "Sattler, Felix",
+          "Korjakow, Tim",
+          "Rischke, Roman",
+          "Samek, Wojciech"
+        ],
+        "count": 162
+      },
+      {
+        "title": "UAV-Enabled Covert Federated Learning",
+        "author": [
+          "Hou, Xiangwang",
+          "Wang, Jingjing",
+          "Jiang, Chunxiao",
+          "Zhang, Xudong",
+          "Ren, Yong",
+          "Debbah, Merouane"
+        ],
+        "count": 159
+      }
+    ]
+  },
+  "created_at": {
+    "$date": "2025-07-09T17:08:41.664Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "686e319eae81904a3d40bc3c"
+  },
+  "workspace_id": "200270e4-2982-409f-8424-e3817969ca80",
+  "analysis_type": "field_occurence",
+  "result": {
+    "type": "field_analysis_occurence",
+    "titleCount": 4000,
+    "results": [
+      {
+        "field": "computer science",
+        "count": 2866
+      },
+      {
+        "field": "engineering",
+        "count": 2078
+      },
+      {
+        "field": "telecommunications",
+        "count": 1162
+      },
+      {
+        "field": "physics",
+        "count": 291
+      },
+      {
+        "field": "chemistry",
+        "count": 204
+      },
+      {
+        "field": "mathematics",
+        "count": 168
+      },
+      {
+        "field": "materials science",
+        "count": 136
+      },
+      {
+        "field": "instruments & instrumentation",
+        "count": 132
+      },
+      {
+        "field": "automation & control systems",
+        "count": 112
+      },
+      {
+        "field": "transportation",
+        "count": 94
+      },
+      {
+        "field": "operations research & management science",
+        "count": 76
+      },
+      {
+        "field": "science & technology - other topics",
+        "count": 45
+      },
+      {
+        "field": "neurosciences & neurology",
+        "count": 44
+      },
+      {
+        "field": "medical informatics",
+        "count": 43
+      },
+      {
+        "field": "mathematical & computational biology",
+        "count": 43
+      },
+      {
+        "field": "energy & fuels",
+        "count": 36
+      },
+      {
+        "field": "radiology, nuclear medicine & medical imaging",
+        "count": 36
+      },
+      {
+        "field": "medicalinformatics",
+        "count": 24
+      },
+      {
+        "field": "imaging science & photographictechnology",
+        "count": 21
+      },
+      {
+        "field": "health care sciences & services",
+        "count": 20
+      },
+      {
+        "field": "biochemistry & molecular biology",
+        "count": 18
+      },
+      {
+        "field": "optics",
+        "count": 13
+      },
+      {
+        "field": "agriculture",
+        "count": 13
+      },
+      {
+        "field": "imaging science & photographic technology",
+        "count": 12
+      },
+      {
+        "field": "remote sensing",
+        "count": 10
+      },
+      {
+        "field": "life sciences & biomedicine - other topics",
+        "count": 10
+      },
+      {
+        "field": "environmental sciences & ecology",
+        "count": 8
+      },
+      {
+        "field": "construction & building technology",
+        "count": 7
+      },
+      {
+        "field": "general & internal medicine",
+        "count": 7
+      },
+      {
+        "field": "business & economics",
+        "count": 7
+      },
+      {
+        "field": "radiology, nuclear medicine & medicalimaging",
+        "count": 6
+      },
+      {
+        "field": "robotics",
+        "count": 5
+      },
+      {
+        "field": "oncology",
+        "count": 5
+      },
+      {
+        "field": "thermodynamics",
+        "count": 5
+      },
+      {
+        "field": "information science &library science",
+        "count": 5
+      },
+      {
+        "field": "information science & library science",
+        "count": 4
+      },
+      {
+        "field": "veterinary sciences",
+        "count": 4
+      },
+      {
+        "field": "zoology",
+        "count": 4
+      },
+      {
+        "field": "geochemistry & geophysics",
+        "count": 4
+      },
+      {
+        "field": "imaging science& photographic technology",
+        "count": 4
+      },
+      {
+        "field": "imaging science &photographic technology",
+        "count": 4
+      },
+      {
+        "field": "mechanics",
+        "count": 4
+      },
+      {
+        "field": "geology",
+        "count": 4
+      },
+      {
+        "field": "surgery",
+        "count": 4
+      },
+      {
+        "field": "cell biology",
+        "count": 3
+      },
+      {
+        "field": "acoustics",
+        "count": 3
+      },
+      {
+        "field": "plant sciences",
+        "count": 3
+      },
+      {
+        "field": "environmental sciences& ecology",
+        "count": 3
+      },
+      {
+        "field": "fisheries",
+        "count": 3
+      },
+      {
+        "field": "business &economics",
+        "count": 3
+      },
+      {
+        "field": "geriatrics & gerontology",
+        "count": 3
+      },
+      {
+        "field": "public, environmental & occupationalhealth",
+        "count": 3
+      },
+      {
+        "field": "mathematical methods in social sciences",
+        "count": 3
+      },
+      {
+        "field": "orthopedics",
+        "count": 3
+      },
+      {
+        "field": "public, environmental & occupational health",
+        "count": 2
+      },
+      {
+        "field": "cardiovascular system & cardiology",
+        "count": 1
+      },
+      {
+        "field": "rehabilitation",
+        "count": 1
+      },
+      {
+        "field": "water resources",
+        "count": 1
+      },
+      {
+        "field": "biotechnology & applied microbiology",
+        "count": 1
+      },
+      {
+        "field": "physical geography",
+        "count": 1
+      },
+      {
+        "field": "microbiology",
+        "count": 1
+      },
+      {
+        "field": "dermatology",
+        "count": 1
+      },
+      {
+        "field": "imagingscience & photographic technology",
+        "count": 1
+      },
+      {
+        "field": "linguistics",
+        "count": 1
+      },
+      {
+        "field": "research & experimental medicine",
+        "count": 1
+      },
+      {
+        "field": "forestry",
+        "count": 1
+      },
+      {
+        "field": "public, environmental &occupational health",
+        "count": 1
+      },
+      {
+        "field": "research & experimentalmedicine",
+        "count": 1
+      }
+    ]
+  },
+  "created_at": {
+    "$date": "2025-07-09T17:08:46.160Z"
+  }
+}]
